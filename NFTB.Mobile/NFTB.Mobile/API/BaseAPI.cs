@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Dynamic;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
@@ -8,13 +9,21 @@ namespace NFTB.Mobile.API
 {
     public class BaseAPI<T>
     {
-        private const string _baseAPIUrl = "http://192.168.1.150/api/person/";
-        private MediaTypeHeaderValue _applicationJson = new MediaTypeHeaderValue("application/json");
+        private string _BaseAPIUrl = "http://192.168.1.150/api/";
+
+        private string FullUrl
+        {
+            get { return GetBaseAPIUrl + RelativeUrl; }
+        }
+
+        public string RelativeUrl { get; set; } = "";
+        private MediaTypeHeaderValue _ApplicationJson = new MediaTypeHeaderValue("application/json");
+        public string GetBaseAPIUrl { get { return _BaseAPIUrl; } }
 
         public async Task<List<T>> GetAsync()
         {
             var httpClient = new HttpClient();
-            var json = await httpClient.GetStringAsync(_baseAPIUrl);
+            var json = await httpClient.GetStringAsync(FullUrl);
             var taskModels = JsonConvert.DeserializeObject<List<T>>(json);
             return taskModels;
         }
@@ -24,8 +33,8 @@ namespace NFTB.Mobile.API
             var httpClient = new HttpClient();
             var json = JsonConvert.SerializeObject(t);
             HttpContent httpContent = new StringContent(json);
-            httpContent.Headers.ContentType = _applicationJson;
-            var result = await httpClient.PostAsync(_baseAPIUrl, httpContent);
+            httpContent.Headers.ContentType = _ApplicationJson;
+            var result = await httpClient.PostAsync(FullUrl, httpContent);
             return result.IsSuccessStatusCode;
         }
     }

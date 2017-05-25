@@ -1,6 +1,6 @@
 ﻿using NFTB.Mobile.UI.Pages;
 using NFTB.Mobile.UI.Content;
-
+using NFTB.Mobile.UI.Navigation;
 using Xamarin.Forms;
 
 namespace NFTB.Mobile
@@ -25,7 +25,7 @@ namespace NFTB.Mobile
             //    }
             //};
             Resources = new Styles().Resources;
-            MainPage = new PlayerList();
+            //MainPage = new Xamarin.Forms.MasterDetailPage();
         }
 
         protected override void OnStart()

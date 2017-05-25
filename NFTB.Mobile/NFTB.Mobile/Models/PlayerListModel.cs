@@ -4,15 +4,16 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using NFTB.Mobile.API;
 using NFTB.Mobile.API.Results;
+using NFTB.Mobile.Logic.DataManagers;
 using Xamarin.Forms;
 
 namespace NFTB.Mobile.Models
 {
 
-    class PlayerListModel : BaseModel //, INotifyPropertyChanged
+    class PlayerListModel : BaseModel
     {
-        public ObservableCollection<string> _PlayerList { get; set; }
-        public ObservableCollection<string> PlayerList { get; set; } = new ObservableCollection<string>();
+        public ObservableCollection<Person> _PlayerList { get; set; }
+        public ObservableCollection<Person> PlayerList { get; set; } = new ObservableCollection<Person>();
         public string _Test { get; set; }
         public string Test
         {
@@ -29,7 +30,7 @@ namespace NFTB.Mobile.Models
 
         public PlayerListModel(ContentPage ui) : base(ui)
         {
-            var test = this.GetPeople();
+            var test = this.GetPlayers();
         }
 
         //public async Task<List<PersonResult>> GetPeople()
@@ -39,11 +40,11 @@ namespace NFTB.Mobile.Models
         //    return result;
         //}
 
-        public async Task<List<Person>> GetPeople()
+        public async Task GetPlayers()
         {
-            BaseAPI<Person> api = new BaseAPI<Person>();
-            var result = await api.GetAsync();
-            return result;
+            var personManager = new PersonManager();
+            var playerList = await personManager.GetPlayers();
+            foreach (var player in playerList) this.PlayerList.Add(player);
         }
 
 
@@ -59,7 +60,7 @@ namespace NFTB.Mobile.Models
 
         public async Task Pop()
         {
-            await this.GetPeople();
+            await this.GetPlayers();
             var test = 3;
         }
 

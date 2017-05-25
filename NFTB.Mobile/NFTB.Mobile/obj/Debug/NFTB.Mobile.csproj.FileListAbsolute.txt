@@ -24,7 +24,8 @@ D:\Projects\NFTB.Mobile\NFTB.Mobile\NFTB.Mobile\obj\Debug\NFTB.Mobile.dll
 D:\Projects\NFTB.Mobile\NFTB.Mobile\NFTB.Mobile\obj\Debug\NFTB.Mobile.pdb
 D:\Projects\NFTB.Mobile\NFTB.Mobile\NFTB.Mobile\obj\Debug\NFTB.Mobile.UI.Pages.PlayerList.xaml.g.cs
 D:\Projects\NFTB.Mobile\NFTB.Mobile\NFTB.Mobile\obj\Debug\NFTB.Mobile.UI.Content.Styles.xaml.g.cs
-D:\Projects\NFTB.Mobile\NFTB.Mobile\NFTB.Mobile\obj\Debug\NFTB.Mobile.dll.mdb
-D:\Projects\NFTB.Mobile\NFTB.Mobile\NFTB.Mobile\bin\Debug\NFTB.Mobile.dll.mdb
+D:\Projects\NFTB.Mobile\NFTB.Mobile\NFTB.Mobile\obj\Debug\NFTB.Mobile.UI.Pages.TermList.xaml.g.cs
+D:\Projects\NFTB.Mobile\NFTB.Mobile\NFTB.Mobile\obj\Debug\NFTB.Mobile.UI.Navigation.MasterDetailPage.xaml.g.cs
+D:\Projects\NFTB.Mobile\NFTB.Mobile\NFTB.Mobile\obj\Debug\NFTB.Mobile.UI.Navigation.MasterPage.xaml.g.cs
 D:\Projects\NFTB.Mobile\NFTB.Mobile\NFTB.Mobile\obj\Debug\NFTB.Mobile.dll.mdb
 D:\Projects\NFTB.Mobile\NFTB.Mobile\NFTB.Mobile\bin\Debug\NFTB.Mobile.dll.mdb

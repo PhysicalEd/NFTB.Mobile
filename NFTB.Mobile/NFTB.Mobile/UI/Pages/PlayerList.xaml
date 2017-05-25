@@ -6,8 +6,13 @@
     <Label Text="I'm working"></Label>
     <Label Text="{Binding Test}"></Label>
     <Button Text="Change" Command="{Binding OnChange}"/>
-    <ListView ItemsSource="{Binding PlayerList}"></ListView>
+    <ListView ItemsSource="{Binding PlayerList}">
+      <ListView.ItemTemplate>
+        <DataTemplate>
+          <TextCell Text="{Binding FirstName}"></TextCell>
+        </DataTemplate>
+      </ListView.ItemTemplate>
+    </ListView>
     <Button Text="Pop" Command="{Binding OnPop}" Style="{StaticResource buttonStyle}"/>
-    <!--<Label Style="{StaticResource H1}" Text="Tesssst" BackgroundColor="Black"></Label>-->
   </StackLayout>
 </ContentPage>

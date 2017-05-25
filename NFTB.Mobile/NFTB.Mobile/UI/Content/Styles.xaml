@@ -1,6 +1,27 @@
 ﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="NFTB.Mobile.UI.Content.Styles">
   <ContentPage.Resources>
     <ResourceDictionary>
+      <Style TargetType="Label">
+        <Setter Property="TextColor" Value="#cca714"></Setter>
+      </Style>
+
+      <Style x:Key="H1" TargetType="Label">
+        <Setter Property="FontSize" Value="20"></Setter>
+        <Setter Property="TextColor" Value="White"></Setter>
+      </Style>
+
+      <Style x:Key="main" TargetType="ScrollView">
+        <Setter Property="HorizontalOptions" Value="FillAndExpand"></Setter>
+        <Setter Property="VerticalOptions" Value="FillAndExpand"></Setter>
+        <Setter Property="BackgroundColor" Value="#223366"></Setter>
+      </Style>
+
+      <Style x:Key="title" TargetType="StackLayout">
+        <Setter Property="HorizontalOptions" Value="CenterAndExpand"></Setter>
+        <Setter Property="BackgroundColor" Value="Black"></Setter>
+      </Style>
+      
+      
       <Style x:Key="buttonStyle" TargetType="Button">
         <Setter Property="HorizontalOptions" Value="Center" />
         <Setter Property="VerticalOptions" Value="CenterAndExpand" />
