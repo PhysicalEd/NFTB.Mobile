@@ -5,17 +5,12 @@ using Xamarin.Forms.Xaml;
 namespace NFTB.Mobile.UI.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class PlayerList : ContentPage
+    public partial class PlayerEditor : ContentPage
     {
-        public PlayerList()
+        public PlayerEditor()
         {
             InitializeComponent();
             this.BindingContext = new PlayerListModel(this);
-        }
-
-        public void OnAppearing()
-        {
-            base.OnAppearing();
         }
     }
 }

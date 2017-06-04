@@ -25,7 +25,8 @@ namespace NFTB.Mobile
             //    }
             //};
             Resources = new Styles().Resources;
-
+            MainPage = new NavigationPage(new TermList());;
+            //MainPage = new TermEditor();
             //MainPage = new Xamarin.Forms.MasterDetailPage();
         }
 

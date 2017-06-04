@@ -5,13 +5,12 @@ using System.Windows.Input;
 using NFTB.Mobile.API;
 using NFTB.Mobile.API.Results;
 using NFTB.Mobile.Logic.DataManagers;
-using NFTB.Mobile.UI.Pages;
 using Xamarin.Forms;
 
 namespace NFTB.Mobile.Models
 {
 
-    class PlayerListModel : BaseModel
+    class TermDetailModel : BaseModel
     {
         public ObservableCollection<Person> _PlayerList { get; set; }
         public ObservableCollection<Person> PlayerList { get; set; } = new ObservableCollection<Person>();
@@ -29,7 +28,7 @@ namespace NFTB.Mobile.Models
             }
         }
 
-        public PlayerListModel(ContentPage ui) : base(ui)
+        public TermDetailModel(ContentPage ui) : base(ui)
         {
             var test = this.GetPlayers();
         }
@@ -43,16 +42,16 @@ namespace NFTB.Mobile.Models
 
         public async Task GetPlayers()
         {
-            var personManager = new PersonManager();
-            var playerList = await personManager.GetPlayers();
-            //var playerList = new List<Person>()
-            //{
-            //    new Person()
-            //    {
-            //        FirstName = "Ed",
-            //        LastName = "Ong"
-            //    }
-            //};
+            //var personManager = new PersonManager();
+            //var playerList = await personManager.GetPlayers();
+            var playerList = new List<Person>()
+            {
+                new Person()
+                {
+                    FirstName = "Ed",
+                    LastName = "Ong"
+                }
+            };
             foreach (var player in playerList) this.PlayerList.Add(player);
         }
 
@@ -69,11 +68,8 @@ namespace NFTB.Mobile.Models
 
         public async Task Pop()
         {
-            //await this.GetPlayers();
-            //var test = 3;
-            var newPage = new PlayerList();
-
-            await this.UI.Navigation.PushAsync(newPage);
+            await this.GetPlayers();
+            var test = 3;
         }
 
         public async Task Change()

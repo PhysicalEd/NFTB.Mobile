@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:xfg="clr-namespace:XFGloss;assembly=XFGloss"
+             xmlns:test="clr-namespace:NFTB.Mobile.UI.Pages;assembly=NFTB.Mobile"
+             xmlns:components="clr-namespace:NFTB.Mobile.UI.Components;assembly=NFTB.Mobile"
+             xmlns:system="clr-namespace:System;assembly=System.Runtime"
+             x:Class="NFTB.Mobile.UI.Pages.TermEditor">
+
+    <StackLayout Style="{StaticResource main}" BackgroundColor="White">
+        <Grid VerticalOptions="FillAndExpand">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="10*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Label Text="Title Here mate" Grid.Row="0"></Label>
+
+            <StackLayout Grid.Row="1" Padding="20" BackgroundColor="Blue">
+                    <Label Text="{Binding Term.Name}"></Label>
+                    <Entry HorizontalOptions="FillAndExpand"></Entry>
+
+                <Label Text="From date"></Label>
+                    <DatePicker Date="{x:Static system:DateTime.Now}" Margin="5">
+                        <DatePicker.Format>dd-MM-yyyy</DatePicker.Format>
+                        <DatePicker.MinimumDate>
+                            <system:DateTime x:FactoryMethod="Parse">
+                                <x:Arguments>
+                                    <x:String>Jan 1 2000</x:String>
+                                </x:Arguments>
+                            </system:DateTime>
+                        </DatePicker.MinimumDate>
+                        <DatePicker.MaximumDate>
+                            <system:DateTime x:FactoryMethod="Parse">
+                                <x:Arguments>
+                                    <x:String>Dec 31 2050</x:String>
+                                </x:Arguments>
+                            </system:DateTime>
+                        </DatePicker.MaximumDate>
+                    </DatePicker>
+
+                <Label Text="To date"></Label>
+                <DatePicker Date="{x:Static system:DateTime.Now}" Margin="5">
+                    <DatePicker.Format>dd-MM-yyyy</DatePicker.Format>
+                    <DatePicker.MinimumDate>
+                        <system:DateTime x:FactoryMethod="Parse">
+                            <x:Arguments>
+                                <x:String>Jan 1 2000</x:String>
+                            </x:Arguments>
+                        </system:DateTime>
+                    </DatePicker.MinimumDate>
+                    <DatePicker.MaximumDate>
+                        <system:DateTime x:FactoryMethod="Parse">
+                            <x:Arguments>
+                                <x:String>Dec 31 2050</x:String>
+                            </x:Arguments>
+                        </system:DateTime>
+                    </DatePicker.MaximumDate>
+                </DatePicker>
+
+                <Label Text="Bond cost"></Label>
+                <Entry Keyboard="Numeric"></Entry>
+
+                <Label Text="Casual rate"></Label>
+                <Entry Keyboard="Numeric"></Entry>
+
+                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" BackgroundColor="Black">
+                    <Label Text="Include organizer" BackgroundColor="Black"></Label>
+                    <Switch HorizontalOptions="End"></Switch>
+                </StackLayout>
+                
+<StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+    <Button Text="Save"></Button>
+                    <Button Text="Clear"></Button>
+
+                </StackLayout>
+
+            </StackLayout>
+        </Grid>
+        <!--<Label BackgroundColor="Black"></Label>-->
+  </StackLayout>
+  
+</ContentPage>

@@ -1,18 +1,50 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:xfg="clr-namespace:XFGloss;assembly=XFGloss"
+             xmlns:test="clr-namespace:NFTB.Mobile.UI.Pages;assembly=NFTB.Mobile"
+             xmlns:components="clr-namespace:NFTB.Mobile.UI.Components;assembly=NFTB.Mobile"
              x:Class="NFTB.Mobile.UI.Pages.PlayerList">
-  <StackLayout>
-    <Label Text="I'm working"></Label>
-    <Label Text="{Binding Test}"></Label>
-    <Button Text="Change" Command="{Binding OnChange}"/>
-    <ListView ItemsSource="{Binding PlayerList}">
-      <ListView.ItemTemplate>
-        <DataTemplate>
-          <TextCell Text="{Binding FirstName}"></TextCell>
-        </DataTemplate>
-      </ListView.ItemTemplate>
-    </ListView>
-    <Button Text="Pop" Command="{Binding OnPop}" Style="{StaticResource buttonStyle}"/>
+
+    <StackLayout Style="{StaticResource main}">
+        <Grid VerticalOptions="FillAndExpand">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="10*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Label Text="Title Here mate" Grid.Row="0"></Label>
+
+            <ListView ItemsSource="{Binding PlayerList}" HasUnevenRows="True" Grid.Row="1">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.ContextActions>
+                                <MenuItem  CommandParameter="{Binding .}" Text="Edit" />
+                                <MenuItem  CommandParameter="{Binding .}" Text="Delete" />
+                            </ViewCell.ContextActions>
+                            <StackLayout Style="{StaticResource listViewItem}">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"></RowDefinition>
+                                        <RowDefinition Height="*"></RowDefinition>
+
+                                    </Grid.RowDefinitions>
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="5*"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Label Style="{StaticResource H1}" Text="{Binding FirstName}" Grid.Column="0" Grid.Row="0"></Label>
+                                    <Label Text="Hey" Grid.Column="0" Grid.Row="1"></Label>
+                                </Grid>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+        <Button Text="Test" Command="{Binding OnPop}"></Button>
   </StackLayout>
+  
 </ContentPage>

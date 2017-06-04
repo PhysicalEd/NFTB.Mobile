@@ -13,5 +13,6 @@ namespace NFTB.Mobile
         {
             InitializeComponent();
         }
+        
     }
 }

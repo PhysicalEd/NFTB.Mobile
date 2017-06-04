@@ -9,7 +9,8 @@ namespace NFTB.Mobile.Models
     public abstract class BaseModel : INotifyPropertyChanged
     {
         protected ContentPage UI;
-        public BaseModel(ContentPage ui)
+
+        protected BaseModel(ContentPage ui)
         {
             this.UI = ui;
             this.OnLoad();
@@ -17,8 +18,16 @@ namespace NFTB.Mobile.Models
 
         protected virtual async Task OnLoad()
         {
-            await UI.DisplayAlert("TEST", "Test", "OK");
+            //await UI.DisplayAlert("TEST", "Test", "OK");
         }
+
+        //protected virtual async Task OnAppearing()
+        //{
+        //    await UI.OnAppearing();
+        //}
+
+
+
 
         public event PropertyChangedEventHandler PropertyChanged;
 

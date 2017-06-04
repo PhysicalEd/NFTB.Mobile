@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Dynamic;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -20,13 +21,33 @@ namespace NFTB.Mobile.API
         private MediaTypeHeaderValue _ApplicationJson = new MediaTypeHeaderValue("application/json");
         public string GetBaseAPIUrl { get { return _BaseAPIUrl; } }
 
-        public async Task<List<T>> GetAsync()
+        //public async Task<List<T>> GetAsync()
+        //{
+        //    var httpClient = new HttpClient();
+        //    var json = await httpClient.GetStringAsync(FullUrl);
+        //    //var taskModels = JsonConvert.DeserializeObject<List<T>>(json);
+        //    var taskModels = JsonConvert.DeserializeObject<List<T>>(json);
+
+
+        //    return taskModels;
+        //}
+
+        public async Task<T> GetAsync()
         {
             var httpClient = new HttpClient();
             var json = await httpClient.GetStringAsync(FullUrl);
-            var taskModels = JsonConvert.DeserializeObject<List<T>>(json);
+            var taskModels = JsonConvert.DeserializeObject<T>(json);
             return taskModels;
         }
+
+        //public async Task<string> GetAsync()
+        //{
+        //    var httpClient = new HttpClient();
+        //    //var json = await httpClient.GetStringAsync(FullUrl);
+        //    HttpResponseMessage response = await httpClient.GetAsync(FullUrl);
+        //    var test = await response.Content.ReadAsStringAsync();
+        //    return test;
+        //}
 
         public async Task<bool> PostAsync(T t)
         {
