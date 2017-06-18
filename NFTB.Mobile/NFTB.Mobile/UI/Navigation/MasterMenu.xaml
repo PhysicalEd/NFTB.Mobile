@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                  xmlns:contentPages="clr-namespace:NFTB.Mobile.UI.Pages"
+                  x:Class="NFTB.Mobile.UI.Navigation.MasterMenu"
+                  Title="Menu">
+  <MasterDetailPage.Master>
+    <ContentPage Title="Menu">
+      <StackLayout Orientation="Vertical" BackgroundColor="{StaticResource mainColor}">
+          <StackLayout HorizontalOptions="CenterAndExpand">
+              <Label Text="Put yo title here"></Label>
+          </StackLayout>
+                <Button BackgroundColor="{StaticResource mainColorOffSet}"  Text ="Terms" TextColor="{StaticResource mainColor}" Command="{Binding OnTermList}"/>
+                <Button BackgroundColor="{StaticResource mainColorOffSet}" Text ="Players" TextColor="{StaticResource mainColor}" Command="{Binding OnPlayerList}"/>
+                <Button BackgroundColor="{StaticResource mainColorOffSet}" Text ="Attendance" TextColor="{StaticResource mainColor}"/>
+      </StackLayout>
+    </ContentPage>
+  </MasterDetailPage.Master>
+  <MasterDetailPage.Detail>
+
+  </MasterDetailPage.Detail>
+</MasterDetailPage>

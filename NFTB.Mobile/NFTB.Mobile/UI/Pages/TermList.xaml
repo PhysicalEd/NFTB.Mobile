@@ -4,24 +4,23 @@
              xmlns:xfg="clr-namespace:XFGloss;assembly=XFGloss"
              xmlns:test="clr-namespace:NFTB.Mobile.UI.Pages;assembly=NFTB.Mobile"
              xmlns:components="clr-namespace:NFTB.Mobile.UI.Components;assembly=NFTB.Mobile"
-             x:Class="NFTB.Mobile.UI.Pages.TermList">
+             x:Class="NFTB.Mobile.UI.Pages.TermList"
+             Title="Term list">
 
     <StackLayout Style="{StaticResource main}">
         <Grid VerticalOptions="FillAndExpand">
             <Grid.RowDefinitions>
-                <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="10*"></RowDefinition>
             </Grid.RowDefinitions>
-            <Label Text="Title Here mate" Grid.Row="0"></Label>
-
-            <ListView x:Name="TermListView" ItemsSource="{Binding TermList}" HasUnevenRows="True" Grid.Row="1">
+           
+            <ListView x:Name="TermListView" ItemsSource="{Binding TermList}" HasUnevenRows="True" Grid.Row="0" IsPullToRefreshEnabled="True" RefreshCommand="{Binding OnGetTerms}" IsRefreshing="{Binding IsBusy}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <ViewCell.ContextActions>
-                                <MenuItem Command="{Binding Path=BindingContext.OnEditTerm, Source={x:Reference TermListView}}" CommandParameter="{Binding .}" Text="Edit"/>
-
-                                <MenuItem  Command="{Binding .}" Text="Delete" />
+                                
+                                <MenuItem Command="{Binding Path=BindingContext.OnEditTerm, Source={x:Reference TermListView}}" CommandParameter="{Binding .}" Text="Edit" />
+                                <MenuItem  Command="{Binding Path=BindingContext.OnDeleteTerm, Source={x:Reference TermListView}}" CommandParameter="{Binding .}" Text="Delete" />
                             </ViewCell.ContextActions>
                             <StackLayout Style="{StaticResource listViewItem}">
                                 <Grid>
@@ -36,15 +35,14 @@
                                         <ColumnDefinition Width="*"></ColumnDefinition>
                                     </Grid.ColumnDefinitions>
                                     <Label Style="{StaticResource H1}" Text="{Binding Name}" Grid.Column="0" Grid.Row="0"></Label>
-                                    <Label Text="Hey" Grid.Column="0" Grid.Row="1"></Label>
+                                    <Label Text="{Binding TermRange}" Grid.Column="0" Grid.Row="1"></Label>
                                 </Grid>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <Button Text="Get terms" Command="{Binding OnGetTerms}"></Button>
         </Grid>
-  </StackLayout>
+    </StackLayout>
   
 </ContentPage>

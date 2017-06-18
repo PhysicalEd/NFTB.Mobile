@@ -1,23 +1,25 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:xfg="clr-namespace:XFGloss;assembly=XFGloss"
-             xmlns:test="clr-namespace:NFTB.Mobile.UI.Pages;assembly=NFTB.Mobile"
-             xmlns:components="clr-namespace:NFTB.Mobile.UI.Components;assembly=NFTB.Mobile"
              xmlns:system="clr-namespace:System;assembly=System.Runtime"
-             x:Class="NFTB.Mobile.UI.Pages.TermEditor">
+             xmlns:controls="clr-namespace:NFTB.Mobile.UI.Controls;assembly=NFTB.Mobile"
+             x:Class="NFTB.Mobile.UI.Pages.TermEditor"
+             Title="Term editor"
+             NavigationPage.HasBackButton="{Binding IsModalPage, Converter={StaticResource Negate}}">
+    
+    
+    
 
-    <StackLayout Style="{StaticResource main}" BackgroundColor="White">
-        <Grid VerticalOptions="FillAndExpand">
+    <StackLayout Style="{StaticResource main}">
+        <!--<Grid VerticalOptions="FillAndExpand">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="10*"></RowDefinition>
-            </Grid.RowDefinitions>
-            <Label Text="Title Here mate" Grid.Row="0"></Label>
+            </Grid.RowDefinitions>-->
 
-            <StackLayout Grid.Row="1" Padding="20" BackgroundColor="Blue">
-                    <Label Text="{Binding Term.Name}"></Label>
-                    <Entry HorizontalOptions="FillAndExpand"></Entry>
+            <StackLayout Grid.Row="1" Padding="20">
+                    <Label Text="Term name"></Label>
+                    <Entry HorizontalOptions="FillAndExpand" Text="{Binding Term.Name}"></Entry>
 
                 <Label Text="From date"></Label>
                     <DatePicker Date="{x:Static system:DateTime.Now}" Margin="5">
@@ -37,6 +39,7 @@
                             </system:DateTime>
                         </DatePicker.MaximumDate>
                     </DatePicker>
+                
 
                 <Label Text="To date"></Label>
                 <DatePicker Date="{x:Static system:DateTime.Now}" Margin="5">
@@ -65,18 +68,18 @@
 
                 <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" BackgroundColor="Black">
                     <Label Text="Include organizer" BackgroundColor="Black"></Label>
-                    <Switch HorizontalOptions="End"></Switch>
+                    <Switch HorizontalOptions="EndAndExpand">
+                    </Switch>
                 </StackLayout>
                 
-<StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
-    <Button Text="Save"></Button>
-                    <Button Text="Clear"></Button>
+    <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+        <Button Text="Save" Command="{Binding OnSave}"></Button>
+        <Button Text="Cancel" Command="{Binding OnCancel}"></Button>
 
-                </StackLayout>
+    </StackLayout>
 
             </StackLayout>
-        </Grid>
-        <!--<Label BackgroundColor="Black"></Label>-->
+        <!--</Grid>-->
   </StackLayout>
   
 </ContentPage>

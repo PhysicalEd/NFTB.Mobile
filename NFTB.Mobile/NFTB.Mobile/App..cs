@@ -25,7 +25,14 @@ namespace NFTB.Mobile
             //    }
             //};
             Resources = new Styles().Resources;
-            MainPage = new NavigationPage(new TermList());;
+            var menu = new MasterMenu();
+            //menu.Title = "WOOF";
+            var nav = new NavigationPage(menu);
+            
+            //nav.Title = "Meow";
+            //MainPage = new NavigationPage(new MasterMenu());
+            MainPage = nav;
+
             //MainPage = new TermEditor();
             //MainPage = new Xamarin.Forms.MasterDetailPage();
         }

@@ -16,6 +16,8 @@ namespace NFTB.Mobile.Models
             this.OnLoad();
         }
 
+        public virtual bool IsModalPage => false;
+
         protected virtual async Task OnLoad()
         {
             //await UI.DisplayAlert("TEST", "Test", "OK");

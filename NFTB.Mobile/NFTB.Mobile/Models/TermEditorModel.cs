@@ -16,9 +16,33 @@ namespace NFTB.Mobile.Models
     {
         public TermSummary Term { get; set; }
 
+        //public override bool IsModalPage => true;
+
+
+        public ICommand OnCancel
+        {
+            get { return new Command(async () => await this.Cancel()); }
+        }
+
+        public ICommand OnSaveTerm
+        {
+            get { return new Command(async () => await this.SaveTerm()); }
+        }
+
         public TermEditorModel(ContentPage ui, TermSummary term) : base(ui)
         {
             this.Term = term;
+
+        }
+
+        public async Task Cancel()
+        {
+            await this.UI.Navigation.PopAsync();
+        }
+
+        public async Task SaveTerm()
+        {
+            var termMgr = new TermManager();
 
         }
 

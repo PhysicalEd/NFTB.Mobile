@@ -4,22 +4,23 @@
              xmlns:xfg="clr-namespace:XFGloss;assembly=XFGloss"
              xmlns:test="clr-namespace:NFTB.Mobile.UI.Pages;assembly=NFTB.Mobile"
              xmlns:components="clr-namespace:NFTB.Mobile.UI.Components;assembly=NFTB.Mobile"
-             x:Class="NFTB.Mobile.UI.Pages.PlayerList">
+             x:Class="NFTB.Mobile.UI.Pages.AttendanceEditor">
 
     <StackLayout Style="{StaticResource main}">
         <Grid VerticalOptions="FillAndExpand">
             <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="10*"></RowDefinition>
             </Grid.RowDefinitions>
+            <Label Text="Title Here mate" Grid.Row="0"></Label>
 
-            <ListView x:Name="PlayerListView" ItemsSource="{Binding PlayerList}" HasUnevenRows="True" Grid.Row="0">
+            <ListView ItemsSource="{Binding PlayerList}" HasUnevenRows="True" Grid.Row="1">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <ViewCell.ContextActions>
-                                <MenuItem Command="{Binding Path=BindingContext.OnEditPlayer, Source={x:Reference PlayerListView}}" CommandParameter="{Binding .}" Text="Edit" />
-                                <MenuItem  Command="{Binding Path=BindingContext.OnDeletePlayer, Source={x:Reference PlayerListView}}" CommandParameter="{Binding .}" Text="Delete" />
-
+                                <MenuItem  CommandParameter="{Binding .}" Text="Edit" />
+                                <MenuItem  CommandParameter="{Binding .}" Text="Delete" />
                             </ViewCell.ContextActions>
                             <StackLayout Style="{StaticResource listViewItem}">
                                 <Grid>

@@ -4,22 +4,16 @@
              xmlns:xfg="clr-namespace:XFGloss;assembly=XFGloss"
              xmlns:test="clr-namespace:NFTB.Mobile.UI.Pages;assembly=NFTB.Mobile"
              xmlns:components="clr-namespace:NFTB.Mobile.UI.Components;assembly=NFTB.Mobile"
-             x:Class="NFTB.Mobile.UI.Pages.PlayerList">
+             x:Class="NFTB.Mobile.UI.Pages.TermDetails">
 
     <StackLayout Style="{StaticResource main}">
-        <Grid VerticalOptions="FillAndExpand">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="10*"></RowDefinition>
-            </Grid.RowDefinitions>
-
-            <ListView x:Name="PlayerListView" ItemsSource="{Binding PlayerList}" HasUnevenRows="True" Grid.Row="0">
+            <!--<ListView x:Name="TermListView" ItemsSource="{Binding TermList}" HasUnevenRows="True">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <ViewCell.ContextActions>
-                                <MenuItem Command="{Binding Path=BindingContext.OnEditPlayer, Source={x:Reference PlayerListView}}" CommandParameter="{Binding .}" Text="Edit" />
-                                <MenuItem  Command="{Binding Path=BindingContext.OnDeletePlayer, Source={x:Reference PlayerListView}}" CommandParameter="{Binding .}" Text="Delete" />
-
+                                <MenuItem Command="{Binding Path=BindingContext.OnEditTerm, Source={x:Reference TermListView}}" CommandParameter="{Binding .}" Text="Edit"/>
+                                <MenuItem  Command="{Binding Path=BindingContext.OnDeleteTerm, Source={x:Reference TermListView}}" CommandParameter="{Binding .}" Text="Delete" />
                             </ViewCell.ContextActions>
                             <StackLayout Style="{StaticResource listViewItem}">
                                 <Grid>
@@ -33,17 +27,16 @@
                                         <ColumnDefinition Width="5*"></ColumnDefinition>
                                         <ColumnDefinition Width="*"></ColumnDefinition>
                                     </Grid.ColumnDefinitions>
-
-                                    <Label Style="{StaticResource H1}" Text="{Binding FirstName}" Grid.Column="0" Grid.Row="0"></Label>
-                                    <Label Text="Hey" Grid.Column="0" Grid.Row="1"></Label>
+                                    <Label Style="{StaticResource H1}" Text="{Binding Name}" Grid.Column="0" Grid.Row="0"></Label>
+                                    <Label Text="{Binding TermRange}" Grid.Column="0" Grid.Row="1"></Label>
                                 </Grid>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
-            </ListView>
-        </Grid>
-        <Button Text="Test" Command="{Binding OnPop}"></Button>
+            </ListView>-->
+        <Label Style="{StaticResource h1}" Text="{Binding Term.Name}"> </Label>
+            <Button Text="Get terms" Command="{Binding OnGetTerms}"></Button>
   </StackLayout>
   
 </ContentPage>

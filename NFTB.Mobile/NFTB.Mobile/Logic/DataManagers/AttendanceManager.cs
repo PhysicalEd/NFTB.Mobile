@@ -11,22 +11,24 @@ using NFTB.Mobile.Data.Entities;
 
 namespace NFTB.Mobile.Logic.DataManagers
 {
-    public class TermManager
+    public class AttendanceManager
     {
 
-        public async Task<List<TermSummary>> GetTerms()
+        public async Task<List<AttendanceSummary>> GetAttendances()
         {
-            BaseAPI<List<TermSummary>> api = new BaseAPI<List<TermSummary>>();
-            api.RelativeUrl = "term/termlist";
+            BaseAPI<List<AttendanceSummary>> api = new BaseAPI<List<AttendanceSummary>>();
+            api.RelativeUrl = "attendance/attendancelist";
             var result = await api.GetAsync();
             return result;
         }
 
-        public async Task DeleteTerm(int? termID)
+
+
+        public async Task DeleteAttendance(int attendanceID)
         {
             BaseAPI<Task> api = new BaseAPI<Task>();
-            api.RelativeUrl = "term/deleteterm";
-            api.RelativeUrl += "?termID=" + termID;
+            api.RelativeUrl = "attendance/deleteattendance";
+            api.RelativeUrl += "?attendanceID=" + attendanceID;
             await api.GetAsync();
         }
     }

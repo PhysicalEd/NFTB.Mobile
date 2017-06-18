@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using NFTB.Mobile.API;
@@ -17,11 +19,34 @@ namespace NFTB.Mobile.Models
         public ObservableCollection<TermSummary> _TermList { get; set; }
         public ObservableCollection<TermSummary> TermList { get; set; } = new ObservableCollection<TermSummary>();
 
+        private bool _IsBusy { get; set; }
+
+        public bool IsBusy
+        {
+            get { return this._IsBusy; }
+            set
+            {
+                if (this._IsBusy == value) return;
+                this._IsBusy = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public ICommand OnRefresh
+        {
+            get { return new Command(async () => await this.Refresh()); }
+        }
+
         public TermSummary SelectedTerm { get; set; }
 
         public ICommand OnEditTerm
         {
             get { return new Command(async () => await this.EditTerm()); }
+        }
+
+        public ICommand OnDeleteTerm
+        {
+            get { return new Command(async () => await this.DeleteTerm()); }
         }
 
         public ICommand OnGetTerms
@@ -33,19 +58,43 @@ namespace NFTB.Mobile.Models
         {
             this.GetTerms();
             
+
+        }
+
+        public async Task Refresh()
+        {
+            this.IsBusy = true;
+            await this.GetTerms();
         }
 
         public async Task GetTerms()
         {
-            var termManager = new TermManager();
-            var termList = await termManager.GetTerms();
-            foreach (var term in termList) this.TermList.Add(term);
+            this.TermList.Clear();
+            var termMgr = new TermManager();
+            var termList = await termMgr.GetTerms();
+            foreach (var term in termList)
+            {
+                var termStartStr = String.Format("{0:MMMM d yyyy}", term.TermStart);
+                var termEndStr = term.TermEnd.HasValue ? String.Format("{0:MMMM d yyyy}", term.TermStart) : "???";
+                term.TermRange = String.Format("{0} - {1}", termStartStr, termEndStr);
+                this.TermList.Add(term);
+            }
+            this.SelectedTerm = termList.FirstOrDefault();
+            this.IsBusy = false;
         }
 
         public async Task EditTerm()
         {
             var termEditorPage = new TermEditor(this.SelectedTerm);
-            await this.UI.Navigation.PushModalAsync(termEditorPage);
+            await this.UI.Navigation.PushAsync(termEditorPage);
+            //await this.UI.Navigation.PushModalAsync(new NavigationPage(playerList));
+        }
+
+        public async Task DeleteTerm()
+        {
+            await this.UI.DisplayAlert("Confirm", "This will delete the selected term", "Ok", "Cancel");
+            var termMgr = new TermManager();
+            await termMgr.DeleteTerm(this.SelectedTerm.TermID);
         }
 
 

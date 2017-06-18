@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<NavigationPage xmlns="http://xamarin.com/schemas/2014/forms"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                  xmlns:contentPages="clr-namespace:NFTB.Mobile.UI.Pages"
+                  x:Class="NFTB.Mobile.UI.Navigation.NavigationMenu"
+                  Title="Navigation"
+                  BackgroundColor="{Binding mainColor}">
+    
+    <!--I need to check what it looks like on an android phone first before implementing this-->
+    <!--<StackLayout Grid.Row="0" Orientation="Horizontal" BackgroundColor="White" Padding="10">
+        <Grid HorizontalOptions="FillAndExpand">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="12*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Image HorizontalOptions="Start" Source="hamburgermenu.png" Grid.Column="0"></Image>
+            <Label Text="THIS IS MY TITLE" HorizontalOptions="FillAndExpand" TextColor="Aqua" Grid.Column="1" HorizontalTextAlignment="Center"></Label>
+
+
+        </Grid>
+
+    </StackLayout>-->
+
+</NavigationPage>

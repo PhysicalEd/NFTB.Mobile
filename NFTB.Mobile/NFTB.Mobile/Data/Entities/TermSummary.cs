@@ -11,6 +11,6 @@ namespace NFTB.Mobile.Data.Entities
         public int BondAmount { get; set; }
         public int CasualRate { get; set; }
         public bool IncludeOrganizer { get; set; }
-
+        public string TermRange { get; set; }
     }
 }

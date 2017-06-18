@@ -29,6 +29,19 @@ namespace NFTB.Mobile.Models
             }
         }
 
+        private bool _IsBusy { get; set; }
+
+        public bool IsBusy
+        {
+            get { return this._IsBusy; }
+            set
+            {
+                if (this._IsBusy == value) return;
+                this._IsBusy = value;
+                OnPropertyChanged();
+            }
+        }
+
         public PlayerListModel(ContentPage ui) : base(ui)
         {
             var test = this.GetPlayers();
