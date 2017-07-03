@@ -14,23 +14,30 @@ namespace NFTB.Mobile.API
 
         private string FullUrl
         {
-            get { return GetBaseAPIUrl + RelativeUrl; }
+            get { return GetBaseAPIUrl + RelativeUrl + ParameterString; }
         }
 
         public string RelativeUrl { get; set; } = "";
+
+        public Dictionary<string,string> ParameterDictionary { get; set; } = new Dictionary<string, string>();
+
+        private string ParameterString
+        {
+            get
+            {
+                var str = "?";
+                foreach (var param in this.ParameterDictionary)
+                {
+                    str += param.Key + "=" + param.Value + "&";
+                }
+
+                return this.ParameterDictionary.Count > 0 ? str: "";
+            }
+        }
+
+
         private MediaTypeHeaderValue _ApplicationJson = new MediaTypeHeaderValue("application/json");
         public string GetBaseAPIUrl { get { return _BaseAPIUrl; } }
-
-        //public async Task<List<T>> GetAsync()
-        //{
-        //    var httpClient = new HttpClient();
-        //    var json = await httpClient.GetStringAsync(FullUrl);
-        //    //var taskModels = JsonConvert.DeserializeObject<List<T>>(json);
-        //    var taskModels = JsonConvert.DeserializeObject<List<T>>(json);
-
-
-        //    return taskModels;
-        //}
 
         public async Task<T> GetAsync()
         {
@@ -39,15 +46,6 @@ namespace NFTB.Mobile.API
             var taskModels = JsonConvert.DeserializeObject<T>(json);
             return taskModels;
         }
-
-        //public async Task<string> GetAsync()
-        //{
-        //    var httpClient = new HttpClient();
-        //    //var json = await httpClient.GetStringAsync(FullUrl);
-        //    HttpResponseMessage response = await httpClient.GetAsync(FullUrl);
-        //    var test = await response.Content.ReadAsStringAsync();
-        //    return test;
-        //}
 
         public async Task<bool> PostAsync(T t)
         {

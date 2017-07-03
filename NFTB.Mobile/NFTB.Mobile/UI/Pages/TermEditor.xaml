@@ -6,9 +6,6 @@
              x:Class="NFTB.Mobile.UI.Pages.TermEditor"
              Title="Term editor"
              NavigationPage.HasBackButton="{Binding IsModalPage, Converter={StaticResource Negate}}">
-    
-    
-    
 
     <StackLayout Style="{StaticResource main}">
         <!--<Grid VerticalOptions="FillAndExpand">
@@ -18,11 +15,11 @@
             </Grid.RowDefinitions>-->
 
             <StackLayout Grid.Row="1" Padding="20">
-                    <Label Text="Term name"></Label>
+                    <Label Text="Term name" Style="{StaticResource form-label}"></Label>
                     <Entry HorizontalOptions="FillAndExpand" Text="{Binding Term.Name}"></Entry>
 
-                <Label Text="From date"></Label>
-                    <DatePicker Date="{x:Static system:DateTime.Now}" Margin="5">
+            <Label Text="From date" Style="{StaticResource form-label}"></Label>
+                    <DatePicker Date="{x:Static system:DateTime.Now}" Margin="5" Style="{StaticResource form-date}">
                         <DatePicker.Format>dd-MM-yyyy</DatePicker.Format>
                         <DatePicker.MinimumDate>
                             <system:DateTime x:FactoryMethod="Parse">
@@ -39,10 +36,10 @@
                             </system:DateTime>
                         </DatePicker.MaximumDate>
                     </DatePicker>
-                
 
-                <Label Text="To date"></Label>
-                <DatePicker Date="{x:Static system:DateTime.Now}" Margin="5">
+
+            <Label Text="To date" Style="{StaticResource form-label}"></Label>
+            <DatePicker Date="{x:Static system:DateTime.Now}" Margin="5"  Style="{StaticResource form-date}">
                     <DatePicker.Format>dd-MM-yyyy</DatePicker.Format>
                     <DatePicker.MinimumDate>
                         <system:DateTime x:FactoryMethod="Parse">
@@ -60,14 +57,14 @@
                     </DatePicker.MaximumDate>
                 </DatePicker>
 
-                <Label Text="Bond cost"></Label>
-                <Entry Keyboard="Numeric"></Entry>
+            <Label Text="Bond cost" Style="{StaticResource form-label}"></Label>
+                <Entry Keyboard="Numeric"  Style="{StaticResource form-entry}"></Entry>
 
-                <Label Text="Casual rate"></Label>
-                <Entry Keyboard="Numeric"></Entry>
+            <Label Text="Casual rate" Style="{StaticResource form-label}"></Label>
+            <Entry Keyboard="Numeric" Style="{StaticResource form-entry}"></Entry>
 
-                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" BackgroundColor="Black">
-                    <Label Text="Include organizer" BackgroundColor="Black"></Label>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                <Label Text="Include organizer" Style="{StaticResource form-label}"></Label>
                     <Switch HorizontalOptions="EndAndExpand">
                     </Switch>
                 </StackLayout>

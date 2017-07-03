@@ -12,7 +12,7 @@ namespace NFTB.Mobile.Models
         protected MasterDetailPage MasterPage;
         private ContentPage TermListPage = new TermList();
         private ContentPage PlayerListPage = new PlayerList();
-        private ContentPage AttendanceEditorPage = new AttendanceEditor();
+        private ContentPage AttendanceListPage = new AttendanceList();
 
 
 
@@ -32,10 +32,19 @@ namespace NFTB.Mobile.Models
             }
         }
 
+        public ICommand OnAttendanceList
+        {
+            get
+            {
+                return new Command(() => this.AttendanceList());
+            }
+        }
+
         public MasterMenuModel(MasterDetailPage masterPage)
         {
             this.MasterPage = masterPage;
-            this.TermList();
+            //this.TermList();
+            this.AttendanceList();
         }
 
         public void TermList()
@@ -48,12 +57,14 @@ namespace NFTB.Mobile.Models
         public void PlayerList()
         {
             this.MasterPage.Detail = this.PlayerListPage;
+            this.MasterPage.Title = this.PlayerListPage.Title;
             this.MasterPage.IsPresented = false;
         }
 
         public void AttendanceList()
         {
-            this.MasterPage.Detail = AttendanceEditorPage;
+            this.MasterPage.Detail = AttendanceListPage;
+            this.MasterPage.Title = this.AttendanceListPage.Title;
             this.MasterPage.IsPresented = false;
         }
 

@@ -19,6 +19,9 @@ namespace NFTB.Mobile.Models
         public ObservableCollection<TermSummary> _TermList { get; set; }
         public ObservableCollection<TermSummary> TermList { get; set; } = new ObservableCollection<TermSummary>();
 
+        public ObservableCollection<string> _TestList { get; set; }
+        public ObservableCollection<string> TestList { get; set; } = new ObservableCollection<string>();
+
         private bool _IsBusy { get; set; }
 
         public bool IsBusy
@@ -32,12 +35,16 @@ namespace NFTB.Mobile.Models
             }
         }
 
-        public ICommand OnRefresh
+        public TermSummary _SelectedTerm { get; set; }
+        public TermSummary SelectedTerm
         {
-            get { return new Command(async () => await this.Refresh()); }
+            get { return this._SelectedTerm; }
+            set
+            {
+                this._SelectedTerm = value;
+                if (this._SelectedTerm != null) this.EditTerm();
+            }
         }
-
-        public TermSummary SelectedTerm { get; set; }
 
         public ICommand OnEditTerm
         {
@@ -57,21 +64,16 @@ namespace NFTB.Mobile.Models
         public TermListModel(ContentPage ui) : base(ui)
         {
             this.GetTerms();
-            
-
-        }
-
-        public async Task Refresh()
-        {
-            this.IsBusy = true;
-            await this.GetTerms();
+            this.TestList.Add("Test1");
+            this.TestList.Add("Test2");
+            this.TestList.Add("Test3");
         }
 
         public async Task GetTerms()
         {
             this.TermList.Clear();
             var termMgr = new TermManager();
-            var termList = await termMgr.GetTerms();
+            var termList = await termMgr.GetTerms(null);
             foreach (var term in termList)
             {
                 var termStartStr = String.Format("{0:MMMM d yyyy}", term.TermStart);
@@ -79,16 +81,17 @@ namespace NFTB.Mobile.Models
                 term.TermRange = String.Format("{0} - {1}", termStartStr, termEndStr);
                 this.TermList.Add(term);
             }
-            this.SelectedTerm = termList.FirstOrDefault();
             this.IsBusy = false;
         }
 
         public async Task EditTerm()
         {
             var termEditorPage = new TermEditor(this.SelectedTerm);
+            
             await this.UI.Navigation.PushAsync(termEditorPage);
-            //await this.UI.Navigation.PushModalAsync(new NavigationPage(playerList));
         }
+
+
 
         public async Task DeleteTerm()
         {
@@ -96,6 +99,8 @@ namespace NFTB.Mobile.Models
             var termMgr = new TermManager();
             await termMgr.DeleteTerm(this.SelectedTerm.TermID);
         }
+
+        
 
 
     }

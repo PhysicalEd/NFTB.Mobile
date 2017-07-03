@@ -4,17 +4,20 @@
              xmlns:xfg="clr-namespace:XFGloss;assembly=XFGloss"
              xmlns:test="clr-namespace:NFTB.Mobile.UI.Pages;assembly=NFTB.Mobile"
              xmlns:components="clr-namespace:NFTB.Mobile.UI.Components;assembly=NFTB.Mobile"
-             x:Class="NFTB.Mobile.UI.Pages.TermList"
-             Title="Term list">
+             x:Class="NFTB.Mobile.UI.Pages.AttendanceList"
+             Title="Attendance list">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Name="New" Command="{Binding OnAddAttendance}"></ToolbarItem>
+    </ContentPage.ToolbarItems>
 
     <StackLayout Style="{StaticResource main}">
-
-        <Grid Style="{StaticResource filter}">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-                <ColumnDefinition Width="10*"></ColumnDefinition>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
+        <!--<StackLayout Orientation="Horizontal" HorizontalOptions="Fill" BackgroundColor="Blue">-->
+        <!--<Grid Style="{StaticResource filter}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="10*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
 
             <Picker x:Name="PlayerListFilter" ItemsSource="{Binding TestList}" IsVisible="False">
 
@@ -31,36 +34,37 @@
 
 
             </Image>
-        </Grid>
+            </Grid>-->
         
-        <ListView x:Name="TermListView" ItemsSource="{Binding TermList}" SelectedItem="{Binding SelectedTerm}" ItemSelected="TermListView_OnItemSelected" HasUnevenRows="True" IsPullToRefreshEnabled="True" RefreshCommand="{Binding OnGetTerms}" IsRefreshing="{Binding IsBusy}">
+
+
+        <!--</StackLayout>-->
+        
+            <ListView x:Name="AttendanceListView" ItemsSource="{Binding AttendanceList}" HasUnevenRows="True" Grid.Row="0">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <ViewCell.ContextActions>
-                                <MenuItem Command="{Binding Path=BindingContext.OnEditTerm, Source={x:Reference TermListView}}" CommandParameter="{Binding .}" Text="Edit" />
-                                <MenuItem  Command="{Binding Path=BindingContext.OnDeleteTerm, Source={x:Reference TermListView}}" CommandParameter="{Binding .}" Text="Delete" />
-                            </ViewCell.ContextActions>
                             <StackLayout Style="{StaticResource list-view-item}">
                                 <Grid>
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="*"></RowDefinition>
                                         <RowDefinition Height="*"></RowDefinition>
-
                                     </Grid.RowDefinitions>
 
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="5*"></ColumnDefinition>
                                         <ColumnDefinition Width="*"></ColumnDefinition>
                                     </Grid.ColumnDefinitions>
-                                    <Label Style="{StaticResource h1}" Text="{Binding Name}" Grid.Column="0" Grid.Row="0"></Label>
-                                    <Label Text="{Binding TermRange}" Grid.Column="0" Grid.Row="1"></Label>
+
+                                    <Label Style="{StaticResource h1}" Text="{Binding AttendanceDate, StringFormat='{0:MMMM d yyyy}'}" Grid.Column="0" Grid.Row="0"></Label>
+                                    <Label Text="Hey" Grid.Column="0" Grid.Row="1"></Label>
                                 </Grid>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-    </StackLayout>
+        <Button Text="Test" Command="{Binding OnAddAttendance}"></Button>
+  </StackLayout>
   
 </ContentPage>

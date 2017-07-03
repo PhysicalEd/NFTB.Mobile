@@ -14,10 +14,11 @@ namespace NFTB.Mobile.Logic.DataManagers
     public class TermManager
     {
 
-        public async Task<List<TermSummary>> GetTerms()
+        public async Task<List<TermSummary>> GetTerms(bool? includeDeleted)
         {
             BaseAPI<List<TermSummary>> api = new BaseAPI<List<TermSummary>>();
             api.RelativeUrl = "term/termlist";
+            api.ParameterDictionary.Add("IncludeDeleted", includeDeleted.ToString());
             var result = await api.GetAsync();
             return result;
         }
@@ -26,7 +27,7 @@ namespace NFTB.Mobile.Logic.DataManagers
         {
             BaseAPI<Task> api = new BaseAPI<Task>();
             api.RelativeUrl = "term/deleteterm";
-            api.RelativeUrl += "?termID=" + termID;
+            api.ParameterDictionary.Add("TermID", termID.ToString());
             await api.GetAsync();
         }
     }

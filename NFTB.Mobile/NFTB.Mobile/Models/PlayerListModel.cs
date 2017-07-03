@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using NFTB.Mobile.API;
 using NFTB.Mobile.API.Results;
+using NFTB.Mobile.Data.Entities;
 using NFTB.Mobile.Logic.DataManagers;
 using NFTB.Mobile.UI.Pages;
 using Xamarin.Forms;
@@ -13,21 +14,18 @@ namespace NFTB.Mobile.Models
 
     class PlayerListModel : BaseModel
     {
-        public ObservableCollection<Person> _PlayerList { get; set; }
-        public ObservableCollection<Person> PlayerList { get; set; } = new ObservableCollection<Person>();
-        public string _Test { get; set; }
-        public string Test
+        public ObservableCollection<PlayerSummary> _PlayerList { get; set; }
+        public ObservableCollection<PlayerSummary> PlayerList { get; set; } = new ObservableCollection<PlayerSummary>();
+
+        public ObservableCollection<string> _TestList { get; set; }
+        public ObservableCollection<string> TestList { get; set; } = new ObservableCollection<string>();
+
+        public ICommand OnGetPlayers
         {
-            get
-            {
-                return this._Test;
-            }
-            set
-            {
-                _Test = value;
-                OnPropertyChanged();
-            }
+            get { return new Command(async () => await this.GetPlayers()); }
         }
+
+        public Picker FilterPicker { get; set; }
 
         private bool _IsBusy { get; set; }
 
@@ -45,6 +43,10 @@ namespace NFTB.Mobile.Models
         public PlayerListModel(ContentPage ui) : base(ui)
         {
             var test = this.GetPlayers();
+            this.TestList.Add("Test1");
+            this.TestList.Add("Test2");
+            this.TestList.Add("Test3");
+            
         }
 
         //public async Task<List<PersonResult>> GetPeople()
@@ -56,18 +58,21 @@ namespace NFTB.Mobile.Models
 
         public async Task GetPlayers()
         {
-            var personManager = new PersonManager();
-            var playerList = await personManager.GetPlayers();
-            //var playerList = new List<Person>()
-            //{
-            //    new Person()
-            //    {
-            //        FirstName = "Ed",
-            //        LastName = "Ong"
-            //    }
-            //};
+            this.PlayerList.Clear();
+            var playerManager = new PlayerManager();
+            var playerList = await playerManager.GetPlayers();
             foreach (var player in playerList) this.PlayerList.Add(player);
+            this.IsBusy = false;
         }
+
+        //public async Task GetTermPlayers()
+        //{
+        //    this.PlayerList.Clear();
+        //    var playerManager = new PlayerManager();
+        //    var playerList = await playerManager.GetPlayers();
+        //    foreach (var player in playerList) this.PlayerList.Add(player);
+        //    this.IsBusy = false;
+        //}
 
 
         public ICommand OnChange
@@ -75,9 +80,15 @@ namespace NFTB.Mobile.Models
             get { return new Command(async () => await this.Change()); }
         }
 
+
         public ICommand OnPop
         {
             get { return new Command(async () => await this.Pop()); }
+        }
+
+        public ICommand OnFilterTapped
+        {
+            get { return new Command(async () => await this.ShowFilters()); }
         }
 
         public async Task Pop()
@@ -91,8 +102,11 @@ namespace NFTB.Mobile.Models
 
         public async Task Change()
         {
-            this.Test = "I HAVE CHANGED FROM THE BUTTON";
-            await this.UI.DisplayAlert("YOHOO", "Yeah", "OK");
+        }
+
+        public async Task ShowFilters()
+        {
+            this.FilterPicker.Focus();
         }
 
 

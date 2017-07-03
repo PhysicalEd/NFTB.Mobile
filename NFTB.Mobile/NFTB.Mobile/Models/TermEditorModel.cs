@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -18,6 +19,8 @@ namespace NFTB.Mobile.Models
 
         //public override bool IsModalPage => true;
 
+        public event Action<bool> OnPageClosed;
+
 
         public ICommand OnCancel
         {
@@ -31,19 +34,19 @@ namespace NFTB.Mobile.Models
 
         public TermEditorModel(ContentPage ui, TermSummary term) : base(ui)
         {
+            if (term == null) term = new TermSummary();
             this.Term = term;
-
         }
 
         public async Task Cancel()
         {
             await this.UI.Navigation.PopAsync();
+            
         }
 
         public async Task SaveTerm()
         {
             var termMgr = new TermManager();
-
         }
 
     }

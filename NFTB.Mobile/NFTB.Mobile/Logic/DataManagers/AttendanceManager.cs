@@ -8,6 +8,7 @@ using Newtonsoft.Json.Schema;
 using NFTB.Mobile.API;
 using NFTB.Mobile.API.Results;
 using NFTB.Mobile.Data.Entities;
+using NFTB.Mobile.Models;
 
 namespace NFTB.Mobile.Logic.DataManagers
 {
@@ -22,7 +23,14 @@ namespace NFTB.Mobile.Logic.DataManagers
             return result;
         }
 
-
+        //public async Task<AttendanceEditorModel> EditAttendance()
+        //{
+        //    //BaseAPI<List<AttendanceSummary>> api = new BaseAPI<List<AttendanceSummary>>();
+        //    //api.RelativeUrl = "attendance/attendancelist";
+        //    //var result = await api.GetAsync();
+        //    //return result;
+        //    return null;
+        //}
 
         public async Task DeleteAttendance(int attendanceID)
         {

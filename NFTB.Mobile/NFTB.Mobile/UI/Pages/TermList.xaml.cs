@@ -13,5 +13,11 @@ namespace NFTB.Mobile.UI.Pages
             InitializeComponent();
             this.BindingContext = new TermListModel(this);
         }
+
+        private void TermListView_OnItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            this.TermListView.SelectedItem = null;
+        }
+
     }
 }

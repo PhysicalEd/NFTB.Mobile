@@ -18,15 +18,14 @@ namespace NFTB.Mobile.Models
 
         public virtual bool IsModalPage => false;
 
-        protected virtual async Task OnLoad()
+        public virtual async Task OnLoad()
         {
-            //await UI.DisplayAlert("TEST", "Test", "OK");
+            
         }
 
-        //protected virtual async Task OnAppearing()
-        //{
-        //    await UI.OnAppearing();
-        //}
+        
+
+        
 
 
 

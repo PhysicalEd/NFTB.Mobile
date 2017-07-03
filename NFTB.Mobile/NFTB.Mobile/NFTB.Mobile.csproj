@@ -38,15 +38,22 @@
     <Compile Include="API\BaseAPI.cs" />
     <Compile Include="API\Results\Person.cs" />
     <Compile Include="App..cs" />
+    <Compile Include="Data\Entities\PlayerAttendanceSummary.cs" />
     <Compile Include="Data\Entities\AttendanceSummary.cs" />
+    <Compile Include="Data\Entities\TermPlayerSummary.cs" />
+    <Compile Include="Data\Entities\PlayerSummary.cs" />
     <Compile Include="Data\Entities\TermSummary.cs" />
+    <Compile Include="Data\Enum\PlayerListFilters.cs" />
     <Compile Include="Logic\DataManagers\AttendanceManager.cs" />
     <Compile Include="Logic\DataManagers\TermManager.cs" />
-    <Compile Include="Logic\DataManagers\PersonManager.cs" />
+    <Compile Include="Logic\DataManagers\PlayerManager.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\AttendanceListModel.cs" />
     <Compile Include="Models\MasterMenuModel.cs" />
+    <Compile Include="Models\AttendanceEditorModel.cs" />
+    <Compile Include="Models\PlayerEditorModel.cs" />
     <Compile Include="Models\TermEditorModel.cs" />
     <Compile Include="Models\TermListModel.cs" />
     <Compile Include="Models\TermDetailModel.cs" />
@@ -71,6 +78,9 @@
     </Compile>
     <Compile Include="UI\Pages\AttendanceEditor.xaml.cs">
       <DependentUpon>AttendanceEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Pages\AttendanceList.xaml.cs">
+      <DependentUpon>AttendanceList.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\Pages\TermEditor.xaml.cs">
       <DependentUpon>TermEditor.xaml</DependentUpon>
@@ -188,6 +198,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="UI\Pages\TermDetails.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UI\Pages\AttendanceList.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

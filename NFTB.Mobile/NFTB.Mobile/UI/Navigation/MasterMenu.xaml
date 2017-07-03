@@ -6,13 +6,13 @@
                   Title="Menu">
   <MasterDetailPage.Master>
     <ContentPage Title="Menu">
-      <StackLayout Orientation="Vertical" BackgroundColor="{StaticResource mainColor}">
+      <StackLayout Orientation="Vertical" BackgroundColor="{StaticResource main-color}">
           <StackLayout HorizontalOptions="CenterAndExpand">
               <Label Text="Put yo title here"></Label>
           </StackLayout>
-                <Button BackgroundColor="{StaticResource mainColorOffSet}"  Text ="Terms" TextColor="{StaticResource mainColor}" Command="{Binding OnTermList}"/>
-                <Button BackgroundColor="{StaticResource mainColorOffSet}" Text ="Players" TextColor="{StaticResource mainColor}" Command="{Binding OnPlayerList}"/>
-                <Button BackgroundColor="{StaticResource mainColorOffSet}" Text ="Attendance" TextColor="{StaticResource mainColor}"/>
+                <Button BackgroundColor="{StaticResource main-color-offset}"  Text ="Terms" TextColor="{StaticResource main-color}" Command="{Binding OnTermList}"/>
+                <Button BackgroundColor="{StaticResource main-color-offset}" Text ="Players" TextColor="{StaticResource main-color}" Command="{Binding OnPlayerList}"/>
+                <Button BackgroundColor="{StaticResource main-color-offset}" Text ="Attendance" TextColor="{StaticResource main-color}" Command="{Binding OnAttendanceList}"/>
       </StackLayout>
     </ContentPage>
   </MasterDetailPage.Master>

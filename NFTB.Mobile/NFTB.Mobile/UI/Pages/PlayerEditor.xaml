@@ -4,46 +4,79 @@
              xmlns:xfg="clr-namespace:XFGloss;assembly=XFGloss"
              xmlns:test="clr-namespace:NFTB.Mobile.UI.Pages;assembly=NFTB.Mobile"
              xmlns:components="clr-namespace:NFTB.Mobile.UI.Components;assembly=NFTB.Mobile"
+             xmlns:system="clr-namespace:System;assembly=System.Runtime"
              x:Class="NFTB.Mobile.UI.Pages.PlayerEditor">
 
     <StackLayout Style="{StaticResource main}">
-        <Grid VerticalOptions="FillAndExpand">
+        <!--<Grid VerticalOptions="FillAndExpand">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="10*"></RowDefinition>
-            </Grid.RowDefinitions>
-            <Label Text="Title Here mate" Grid.Row="0"></Label>
+            </Grid.RowDefinitions>-->
 
-            <ListView ItemsSource="{Binding PlayerList}" HasUnevenRows="True" Grid.Row="1">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <ViewCell.ContextActions>
-                                <MenuItem  CommandParameter="{Binding .}" Text="Edit" />
-                                <MenuItem  CommandParameter="{Binding .}" Text="Delete" />
-                            </ViewCell.ContextActions>
-                            <StackLayout Style="{StaticResource listViewItem}">
-                                <Grid>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="*"></RowDefinition>
-                                        <RowDefinition Height="*"></RowDefinition>
+        <StackLayout Grid.Row="1" Padding="20">
+            <Label Text="First name" Style="{StaticResource form-label}"></Label>
+            <Entry HorizontalOptions="FillAndExpand" Text="{Binding Player.Name}"></Entry>
 
-                                    </Grid.RowDefinitions>
+            <Label Text="From date" Style="{StaticResource form-label}"></Label>
+            <DatePicker Date="{x:Static system:DateTime.Now}" Margin="5" Style="{StaticResource form-date}">
+                <DatePicker.Format>dd-MM-yyyy</DatePicker.Format>
+                <DatePicker.MinimumDate>
+                    <system:DateTime x:FactoryMethod="Parse">
+                        <x:Arguments>
+                            <x:String>Jan 1 2000</x:String>
+                        </x:Arguments>
+                    </system:DateTime>
+                </DatePicker.MinimumDate>
+                <DatePicker.MaximumDate>
+                    <system:DateTime x:FactoryMethod="Parse">
+                        <x:Arguments>
+                            <x:String>Dec 31 2050</x:String>
+                        </x:Arguments>
+                    </system:DateTime>
+                </DatePicker.MaximumDate>
+            </DatePicker>
 
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="5*"></ColumnDefinition>
-                                        <ColumnDefinition Width="*"></ColumnDefinition>
-                                    </Grid.ColumnDefinitions>
 
-                                    <Label Style="{StaticResource H1}" Text="Hey" Grid.Column="0" Grid.Row="0"></Label>
-                                    <Label Text="Hey" Grid.Column="0" Grid.Row="1"></Label>
-                                </Grid>
-                            </StackLayout>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </Grid>
-  </StackLayout>
-  
+            <Label Text="To date" Style="{StaticResource form-label}"></Label>
+            <DatePicker Date="{x:Static system:DateTime.Now}" Margin="5">
+                <DatePicker.Format>dd-MM-yyyy</DatePicker.Format>
+                <DatePicker.MinimumDate>
+                    <system:DateTime x:FactoryMethod="Parse">
+                        <x:Arguments>
+                            <x:String>Jan 1 2000</x:String>
+                        </x:Arguments>
+                    </system:DateTime>
+                </DatePicker.MinimumDate>
+                <DatePicker.MaximumDate>
+                    <system:DateTime x:FactoryMethod="Parse">
+                        <x:Arguments>
+                            <x:String>Dec 31 2050</x:String>
+                        </x:Arguments>
+                    </system:DateTime>
+                </DatePicker.MaximumDate>
+            </DatePicker>
+
+            <Label Text="Bond cost" Style="{StaticResource form-label}"></Label>
+            <Entry Keyboard="Numeric"></Entry>
+
+            <Label Text="Casual rate" Style="{StaticResource form-label}"></Label>
+            <Entry Keyboard="Numeric"></Entry>
+
+            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                <Label Text="Include organizer" Style="{StaticResource form-label}"></Label>
+                <Switch HorizontalOptions="EndAndExpand">
+                </Switch>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                <Button Text="Save" Command="{Binding OnSave}"></Button>
+                <Button Text="Cancel" Command="{Binding OnCancel}"></Button>
+
+            </StackLayout>
+
+        </StackLayout>
+        <!--</Grid>-->
+    </StackLayout>
+
 </ContentPage>

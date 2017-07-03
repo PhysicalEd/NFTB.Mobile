@@ -7,44 +7,70 @@
 
       <controls:NegateBoolean x:Key="Negate"></controls:NegateBoolean>
         
-    
-        
-      <Color x:Key="mainColor">#15141A</Color>
-      <Color x:Key="mainColorLight">#1D1B24</Color>
-      <Color x:Key="mainColorComp">#B27F25</Color>
-      <Color x:Key="mainColorOffSet">#FFFFFF</Color>
+      <Color x:Key="main-color">#15141A</Color>
+      <Color x:Key="main-color-light">#1D1B24</Color>
+      <Color x:Key="main-color-comp">#B27F25</Color>
+      <Color x:Key="main-color-offset">#FFFFFF</Color>
 
-      <Style x:Key="listViewItem" TargetType="StackLayout">
+    <Style x:Key="filter" TargetType="Grid">
+        <Setter Property="HorizontalOptions" Value="CenterAndExpand"></Setter>
+        <Setter Property="Padding" Value="10,0,10,0"></Setter>
+    </Style>
+
+            <Style x:Key="list-view-item" TargetType="StackLayout">
         <Setter Property="HorizontalOptions" Value="CenterAndExpand"></Setter>
         <Setter Property="VerticalOptions" Value="CenterAndExpand"></Setter>
-        <Setter Property="Margin" Value="0,10,0,0"></Setter>
+        <Setter Property="Margin" Value="0,0,0,10"></Setter>
         <Setter Property="Padding" Value="10"></Setter>
-        <Setter Property="BackgroundColor" Value="{StaticResource mainColorLight}"></Setter>
-      </Style>
+        <Setter Property="BackgroundColor" Value="{StaticResource main-color-light}"></Setter>
+    </Style>
 
-      <Style TargetType="Label">
-                <Setter Property="FontSize" Value="12"></Setter>
-                <Setter Property="VerticalOptions" Value="Center"></Setter>
-                <Setter Property="TextColor" Value="{StaticResource mainColorOffSet}"></Setter>
-            </Style>
-
-      <Style x:Key="H1" TargetType="Label">
+    <Style x:Key="h1" TargetType="Label">
         <Setter Property="FontSize" Value="20"></Setter>
-        <Setter Property="TextColor" Value="{StaticResource mainColorComp}"></Setter>
+        <Setter Property="TextColor" Value="{StaticResource main-color-comp}"></Setter>
         <Setter Property="VerticalOptions" Value="Center"></Setter>
-      </Style>
+    </Style>
 
-      <Style x:Key="main" TargetType="StackLayout">
+    <Style x:Key="h3" TargetType="Label" BasedOn="{StaticResource h1}">
+        <Setter Property="FontSize" Value="16"></Setter>
+    </Style>
+
+    <Style x:Key="main" TargetType="StackLayout">
+        <Setter Property="Padding" Value="0,10,0,0"></Setter>
         <Setter Property="HorizontalOptions" Value="FillAndExpand"></Setter>
         <Setter Property="VerticalOptions" Value="FillAndExpand"></Setter>
-        <Setter Property="BackgroundColor" Value="{StaticResource mainColor}"></Setter>
-      </Style>
+        <Setter Property="BackgroundColor" Value="{StaticResource main-color}"></Setter>
+    </Style>
 
     <Style x:Key="title" TargetType="StackLayout">
         <Setter Property="HorizontalOptions" Value="CenterAndExpand"></Setter>
         <Setter Property="BackgroundColor" Value="Black"></Setter>
-      </Style>
+    </Style>
 
+    <Style x:Key="form-label" TargetType="Label" BasedOn="{StaticResource h1}">
+        <Setter Property="FontSize" Value="16"></Setter>
+    </Style>
+
+    <Style x:Key="form-entry" TargetType="Entry">
+        <Setter Property="FontSize" Value="14"></Setter>
+        <Setter Property="TextColor" Value="{StaticResource main-color-offset}"></Setter>
+    </Style>
+
+    <Style x:Key="form-date" TargetType="DatePicker">
+        <Setter Property="TextColor" Value="{StaticResource main-color-offset}"></Setter>
+    </Style>
+
+            <!--Implicit styling-->
+    <Style TargetType="Label" BasedOn="{StaticResource h1}">
+                <Setter Property="TextColor" Value="{StaticResource main-color-offset}"></Setter>
+                <Setter Property="FontSize" Value="12"></Setter>
+    </Style>
+
+    <Style TargetType="Entry">
+        <Setter Property="TextColor" Value="{StaticResource main-color-offset}"></Setter>
+        <Setter Property="FontSize" Value="12"></Setter>
+    </Style>
+        
     </ResourceDictionary>
   </ContentPage.Resources>
 </ContentPage>

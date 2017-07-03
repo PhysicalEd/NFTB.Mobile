@@ -7,36 +7,7 @@
              x:Class="NFTB.Mobile.UI.Pages.TermDetails">
 
     <StackLayout Style="{StaticResource main}">
-            <!--<ListView x:Name="TermListView" ItemsSource="{Binding TermList}" HasUnevenRows="True">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <ViewCell.ContextActions>
-                                <MenuItem Command="{Binding Path=BindingContext.OnEditTerm, Source={x:Reference TermListView}}" CommandParameter="{Binding .}" Text="Edit"/>
-                                <MenuItem  Command="{Binding Path=BindingContext.OnDeleteTerm, Source={x:Reference TermListView}}" CommandParameter="{Binding .}" Text="Delete" />
-                            </ViewCell.ContextActions>
-                            <StackLayout Style="{StaticResource listViewItem}">
-                                <Grid>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="*"></RowDefinition>
-                                        <RowDefinition Height="*"></RowDefinition>
-
-                                    </Grid.RowDefinitions>
-
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="5*"></ColumnDefinition>
-                                        <ColumnDefinition Width="*"></ColumnDefinition>
-                                    </Grid.ColumnDefinitions>
-                                    <Label Style="{StaticResource H1}" Text="{Binding Name}" Grid.Column="0" Grid.Row="0"></Label>
-                                    <Label Text="{Binding TermRange}" Grid.Column="0" Grid.Row="1"></Label>
-                                </Grid>
-                            </StackLayout>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>-->
-        <Label Style="{StaticResource h1}" Text="{Binding Term.Name}"> </Label>
-            <Button Text="Get terms" Command="{Binding OnGetTerms}"></Button>
-  </StackLayout>
+            
+    </StackLayout>
   
 </ContentPage>

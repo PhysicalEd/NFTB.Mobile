@@ -4,15 +4,38 @@
              xmlns:xfg="clr-namespace:XFGloss;assembly=XFGloss"
              xmlns:test="clr-namespace:NFTB.Mobile.UI.Pages;assembly=NFTB.Mobile"
              xmlns:components="clr-namespace:NFTB.Mobile.UI.Components;assembly=NFTB.Mobile"
-             x:Class="NFTB.Mobile.UI.Pages.PlayerList">
+             x:Class="NFTB.Mobile.UI.Pages.PlayerList"
+             Title="Player list">
 
     <StackLayout Style="{StaticResource main}">
-        <Grid VerticalOptions="FillAndExpand">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="10*"></RowDefinition>
-            </Grid.RowDefinitions>
+        <!--<StackLayout Orientation="Horizontal" HorizontalOptions="Fill" BackgroundColor="Blue">-->
+        <Grid Style="{StaticResource filter}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="10*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
 
-            <ListView x:Name="PlayerListView" ItemsSource="{Binding PlayerList}" HasUnevenRows="True" Grid.Row="0">
+            <Picker x:Name="PlayerListFilter" ItemsSource="{Binding TestList}" IsVisible="False">
+
+            </Picker>
+
+            <Label Text="Filter was there a thing in the majigy yoza hey hey" HorizontalOptions="Center" Grid.Column="1"></Label>
+
+            <Image Source="icon.png" HorizontalOptions="End" Grid.Column="2">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding OnFilterTapped}">
+
+                    </TapGestureRecognizer>
+                </Image.GestureRecognizers>
+
+
+            </Image>
+            </Grid>
+
+        <!--</StackLayout>-->
+
+        <ListView x:Name="PlayerListView" ItemsSource="{Binding PlayerList}" HasUnevenRows="True" IsPullToRefreshEnabled="True" RefreshCommand="{Binding OnGetPlayers}" IsRefreshing="{Binding IsBusy}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -21,7 +44,7 @@
                                 <MenuItem  Command="{Binding Path=BindingContext.OnDeletePlayer, Source={x:Reference PlayerListView}}" CommandParameter="{Binding .}" Text="Delete" />
 
                             </ViewCell.ContextActions>
-                            <StackLayout Style="{StaticResource listViewItem}">
+                            <StackLayout Style="{StaticResource list-view-item}">
                                 <Grid>
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="*"></RowDefinition>
@@ -34,7 +57,7 @@
                                         <ColumnDefinition Width="*"></ColumnDefinition>
                                     </Grid.ColumnDefinitions>
 
-                                    <Label Style="{StaticResource H1}" Text="{Binding FirstName}" Grid.Column="0" Grid.Row="0"></Label>
+                                    <Label Style="{StaticResource h1}" Text="{Binding FirstName}" Grid.Column="0" Grid.Row="0"></Label>
                                     <Label Text="Hey" Grid.Column="0" Grid.Row="1"></Label>
                                 </Grid>
                             </StackLayout>
@@ -42,7 +65,6 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-        </Grid>
         <Button Text="Test" Command="{Binding OnPop}"></Button>
   </StackLayout>
   
