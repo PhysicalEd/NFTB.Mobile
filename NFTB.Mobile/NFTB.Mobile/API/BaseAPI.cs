@@ -3,14 +3,16 @@ using System.Collections.Generic;
 using System.Dynamic;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using NFTB.Mobile.Data.Entities;
 
 namespace NFTB.Mobile.API
 {
     public class BaseAPI<T>
     {
-        private string _BaseAPIUrl = "http://192.168.1.150/api/";
+        private string _BaseAPIUrl = "http://192.168.1.10/api/";
 
         private string FullUrl
         {
@@ -47,14 +49,18 @@ namespace NFTB.Mobile.API
             return taskModels;
         }
 
-        public async Task<bool> PostAsync(T t)
+
+        public async Task<T> PostAsync(T t)
         {
             var httpClient = new HttpClient();
             var json = JsonConvert.SerializeObject(t);
-            HttpContent httpContent = new StringContent(json);
-            httpContent.Headers.ContentType = _ApplicationJson;
+            HttpContent httpContent = new StringContent(json, Encoding.UTF8, "application/json");
             var result = await httpClient.PostAsync(FullUrl, httpContent);
-            return result.IsSuccessStatusCode;
+            // Read result content as string
+            var resultString =  result.Content.ReadAsStringAsync();
+            // Deserialize the string into the object it's sending back
+            var jsonResult = JsonConvert.DeserializeObject<T>(resultString.Result);
+            return jsonResult;
         }
     }
 }

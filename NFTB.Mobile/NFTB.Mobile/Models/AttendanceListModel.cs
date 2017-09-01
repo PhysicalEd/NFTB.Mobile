@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using NFTB.Mobile.API;
 using NFTB.Mobile.API.Results;
+using NFTB.Mobile.Contracts;
 using NFTB.Mobile.Data.Entities;
 using NFTB.Mobile.Logic.DataManagers;
 using NFTB.Mobile.UI.Pages;
@@ -17,13 +18,14 @@ namespace NFTB.Mobile.Models
     {
         public ObservableCollection<AttendanceSummary> AttendanceList { get; set; } = new ObservableCollection<AttendanceSummary>();
 
-        public ICommand OnAddAttendance
+        public ICommand OnEditAttendance
         {
             get
             {
-                return new Command(() =>
+                return new Command(async () =>
                 {
                     this.SelectedAttendance = null;
+                    await this.EditAttendance();
                 });
             }
         }
@@ -35,7 +37,7 @@ namespace NFTB.Mobile.Models
             set
             {
                 this._SelectedAttendance = value;
-                this.EditAttendance();
+                if(this._SelectedAttendance != null) this.EditAttendance();
             }
         }
 
@@ -52,7 +54,12 @@ namespace NFTB.Mobile.Models
             }
         }
 
-        public AttendanceListModel(ContentPage ui) : base(ui)
+        protected virtual async Task OnAppearing()
+        {
+            this.SelectedAttendance = null;
+        }
+
+        public AttendanceListModel(IContentPage ui) : base(ui)
         {
             this.GetAttendances();
         }
@@ -60,7 +67,7 @@ namespace NFTB.Mobile.Models
         public async Task EditAttendance()
         {
             var attendanceEditor = new AttendanceEditor(this.SelectedAttendance);
-            await this.UI.Navigation.PushAsync(attendanceEditor);
+            await this.GoToPage(attendanceEditor);
         }
 
         public async Task GetAttendances()

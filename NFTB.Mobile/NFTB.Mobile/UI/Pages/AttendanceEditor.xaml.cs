@@ -1,4 +1,5 @@
-﻿using NFTB.Mobile.Data.Entities;
+﻿using NFTB.Mobile.Contracts;
+using NFTB.Mobile.Data.Entities;
 using NFTB.Mobile.Models;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -6,7 +7,7 @@ using Xamarin.Forms.Xaml;
 namespace NFTB.Mobile.UI.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class AttendanceEditor : ContentPage
+    public partial class AttendanceEditor : IContentPage<AttendanceEditorModel>
     {
         public AttendanceEditor(AttendanceSummary attendance)
         {
@@ -14,9 +15,9 @@ namespace NFTB.Mobile.UI.Pages
             this.BindingContext = new AttendanceEditorModel(this, attendance);
         }
 
-        public void OnAppearing()
+
+        public void OnItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            base.OnAppearing();
         }
     }
 }

@@ -36,13 +36,16 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="API\BaseAPI.cs" />
+    <Compile Include="API\Results\AttendanceEditorModelResult.cs" />
     <Compile Include="API\Results\Person.cs" />
     <Compile Include="App..cs" />
+    <Compile Include="Common\Extensions\ContentPageExtensions.cs" />
+    <Compile Include="Contracts\IContentPage.cs" />
+    <Compile Include="Data\Entities\TermSummary.cs" />
     <Compile Include="Data\Entities\PlayerAttendanceSummary.cs" />
     <Compile Include="Data\Entities\AttendanceSummary.cs" />
     <Compile Include="Data\Entities\TermPlayerSummary.cs" />
     <Compile Include="Data\Entities\PlayerSummary.cs" />
-    <Compile Include="Data\Entities\TermSummary.cs" />
     <Compile Include="Data\Enum\PlayerListFilters.cs" />
     <Compile Include="Logic\DataManagers\AttendanceManager.cs" />
     <Compile Include="Logic\DataManagers\TermManager.cs" />
@@ -85,8 +88,8 @@
     <Compile Include="UI\Pages\TermEditor.xaml.cs">
       <DependentUpon>TermEditor.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\Pages\TermDetails.xaml.cs">
-      <DependentUpon>TermDetails.xaml</DependentUpon>
+    <Compile Include="UI\Pages\TermDetail.xaml.cs">
+      <DependentUpon>TermDetail.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\Pages\TermList.xaml.cs">
       <DependentUpon>TermList.xaml</DependentUpon>
@@ -139,9 +142,7 @@
     <None Include="GettingStarted.Xamarin" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Contracts\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <EmbeddedResource Include="UI\Pages\PlayerList.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
@@ -197,7 +198,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="UI\Pages\TermDetails.xaml">
+    <EmbeddedResource Include="UI\Pages\TermDetail.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

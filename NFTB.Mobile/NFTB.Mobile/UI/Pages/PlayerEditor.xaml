@@ -16,63 +16,20 @@
 
         <StackLayout Grid.Row="1" Padding="20">
             <Label Text="First name" Style="{StaticResource form-label}"></Label>
-            <Entry HorizontalOptions="FillAndExpand" Text="{Binding Player.Name}"></Entry>
+            <Entry HorizontalOptions="FillAndExpand" Text="{Binding Player.FirstName}"></Entry>
 
-            <Label Text="From date" Style="{StaticResource form-label}"></Label>
-            <DatePicker Date="{x:Static system:DateTime.Now}" Margin="5" Style="{StaticResource form-date}">
-                <DatePicker.Format>dd-MM-yyyy</DatePicker.Format>
-                <DatePicker.MinimumDate>
-                    <system:DateTime x:FactoryMethod="Parse">
-                        <x:Arguments>
-                            <x:String>Jan 1 2000</x:String>
-                        </x:Arguments>
-                    </system:DateTime>
-                </DatePicker.MinimumDate>
-                <DatePicker.MaximumDate>
-                    <system:DateTime x:FactoryMethod="Parse">
-                        <x:Arguments>
-                            <x:String>Dec 31 2050</x:String>
-                        </x:Arguments>
-                    </system:DateTime>
-                </DatePicker.MaximumDate>
-            </DatePicker>
+            <Label Text="Last name" Style="{StaticResource form-label}"></Label>
+            <Entry HorizontalOptions="FillAndExpand" Text="{Binding Player.LastName}"></Entry>
 
+            <Label Text="Phone" Style="{StaticResource form-label}"></Label>
+            <Entry HorizontalOptions="FillAndExpand" Text="{Binding Player.Phone}"></Entry>
 
-            <Label Text="To date" Style="{StaticResource form-label}"></Label>
-            <DatePicker Date="{x:Static system:DateTime.Now}" Margin="5">
-                <DatePicker.Format>dd-MM-yyyy</DatePicker.Format>
-                <DatePicker.MinimumDate>
-                    <system:DateTime x:FactoryMethod="Parse">
-                        <x:Arguments>
-                            <x:String>Jan 1 2000</x:String>
-                        </x:Arguments>
-                    </system:DateTime>
-                </DatePicker.MinimumDate>
-                <DatePicker.MaximumDate>
-                    <system:DateTime x:FactoryMethod="Parse">
-                        <x:Arguments>
-                            <x:String>Dec 31 2050</x:String>
-                        </x:Arguments>
-                    </system:DateTime>
-                </DatePicker.MaximumDate>
-            </DatePicker>
-
-            <Label Text="Bond cost" Style="{StaticResource form-label}"></Label>
-            <Entry Keyboard="Numeric"></Entry>
-
-            <Label Text="Casual rate" Style="{StaticResource form-label}"></Label>
-            <Entry Keyboard="Numeric"></Entry>
-
-            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                <Label Text="Include organizer" Style="{StaticResource form-label}"></Label>
-                <Switch HorizontalOptions="EndAndExpand">
-                </Switch>
-            </StackLayout>
+            <Label Text="Email" Style="{StaticResource form-label}"></Label>
+            <Entry HorizontalOptions="FillAndExpand" Text="{Binding Player.Email}"></Entry>
 
             <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
-                <Button Text="Save" Command="{Binding OnSave}"></Button>
+                <Button Text="Save" Command="{Binding OnSavePlayer}"></Button>
                 <Button Text="Cancel" Command="{Binding OnCancel}"></Button>
-
             </StackLayout>
 
         </StackLayout>

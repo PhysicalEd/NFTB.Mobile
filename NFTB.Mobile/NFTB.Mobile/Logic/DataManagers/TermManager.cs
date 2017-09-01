@@ -30,5 +30,22 @@ namespace NFTB.Mobile.Logic.DataManagers
             api.ParameterDictionary.Add("TermID", termID.ToString());
             await api.GetAsync();
         }
+
+        public async Task SaveTerm(TermSummary term)
+        {
+            BaseAPI<Task> api = new BaseAPI<Task>();
+            api.RelativeUrl = "term/saveterm";
+            api.ParameterDictionary.Add("TermID", term.TermID.ToString());
+            api.ParameterDictionary.Add("TermName", term.Name);
+            api.ParameterDictionary.Add("TermStart", term.TermStart.ToString());
+            api.ParameterDictionary.Add("TermEnd", term.TermEnd.ToString());
+            api.ParameterDictionary.Add("BondAmount", term.BondAmount.ToString());
+            api.ParameterDictionary.Add("CasualRate", term.CasualRate.ToString());
+            api.ParameterDictionary.Add("IncludeOrganizer", term.IncludeOrganizer.ToString());
+            api.ParameterDictionary.Add("IsDeleted", false.ToString());
+            api.ParameterDictionary.Add("IsActive", false.ToString());
+            api.ParameterDictionary.Add("IsInvoiced", term.IsInvoiced.ToString());
+            await api.GetAsync();
+        }
     }
 }

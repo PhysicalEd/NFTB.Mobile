@@ -39,5 +39,21 @@ namespace NFTB.Mobile.Logic.DataManagers
             api.RelativeUrl += "?attendanceID=" + attendanceID;
             await api.GetAsync();
         }
+
+        public async Task<AttendanceEditorModelResult> GetAttendanceEditorModel(AttendanceSummary attendance)
+        {
+            BaseAPI<AttendanceEditorModelResult> api = new BaseAPI<AttendanceEditorModelResult>();
+            api.RelativeUrl = "attendance/attendanceeditor";
+            api.ParameterDictionary.Add("AttendanceID", attendance.AttendanceID.ToString());
+            var result = await api.GetAsync();
+            return result;
+        }
+
+        public async Task<AttendanceSummary> SaveAttendance(AttendanceSummary attendance)
+        {
+            BaseAPI<AttendanceSummary> api = new BaseAPI<AttendanceSummary>();
+            api.RelativeUrl = "attendance/saveattendance";
+            return await api.PostAsync(attendance);
+        }
     }
 }

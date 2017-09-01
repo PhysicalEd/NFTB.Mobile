@@ -14,69 +14,78 @@
                 <RowDefinition Height="10*"></RowDefinition>
             </Grid.RowDefinitions>-->
 
-            <StackLayout Grid.Row="1" Padding="20">
-                    <Label Text="Term name" Style="{StaticResource form-label}"></Label>
-                    <Entry HorizontalOptions="FillAndExpand" Text="{Binding Term.Name}"></Entry>
+        <StackLayout Grid.Row="1" Padding="20">
+            <Label Text="Term name" Style="{StaticResource form-label}"></Label>
+            <Entry HorizontalOptions="FillAndExpand" Text="{Binding Term.Name}"></Entry>
 
             <Label Text="From date" Style="{StaticResource form-label}"></Label>
-                    <DatePicker Date="{x:Static system:DateTime.Now}" Margin="5" Style="{StaticResource form-date}">
-                        <DatePicker.Format>dd-MM-yyyy</DatePicker.Format>
-                        <DatePicker.MinimumDate>
-                            <system:DateTime x:FactoryMethod="Parse">
-                                <x:Arguments>
-                                    <x:String>Jan 1 2000</x:String>
-                                </x:Arguments>
-                            </system:DateTime>
-                        </DatePicker.MinimumDate>
-                        <DatePicker.MaximumDate>
-                            <system:DateTime x:FactoryMethod="Parse">
-                                <x:Arguments>
-                                    <x:String>Dec 31 2050</x:String>
-                                </x:Arguments>
-                            </system:DateTime>
-                        </DatePicker.MaximumDate>
-                    </DatePicker>
+            <DatePicker Date="{Binding Path=Term.TermStart}" Margin="5" Style="{StaticResource form-date}">
+                <DatePicker.Format>dd-MM-yyyy</DatePicker.Format>
+                <DatePicker.MinimumDate>
+                    <system:DateTime x:FactoryMethod="Parse">
+                        <x:Arguments>
+                            <x:String>Jan 1 2017</x:String>
+                        </x:Arguments>
+                    </system:DateTime>
+                </DatePicker.MinimumDate>
+                <DatePicker.MaximumDate>
+                    <system:DateTime x:FactoryMethod="Parse">
+                        <x:Arguments>
+                            <x:String>Dec 31 2050</x:String>
+                        </x:Arguments>
+                    </system:DateTime>
+                </DatePicker.MaximumDate>
+            </DatePicker>
 
 
             <Label Text="To date" Style="{StaticResource form-label}"></Label>
-            <DatePicker Date="{x:Static system:DateTime.Now}" Margin="5"  Style="{StaticResource form-date}">
-                    <DatePicker.Format>dd-MM-yyyy</DatePicker.Format>
-                    <DatePicker.MinimumDate>
-                        <system:DateTime x:FactoryMethod="Parse">
-                            <x:Arguments>
-                                <x:String>Jan 1 2000</x:String>
-                            </x:Arguments>
-                        </system:DateTime>
-                    </DatePicker.MinimumDate>
-                    <DatePicker.MaximumDate>
-                        <system:DateTime x:FactoryMethod="Parse">
-                            <x:Arguments>
-                                <x:String>Dec 31 2050</x:String>
-                            </x:Arguments>
-                        </system:DateTime>
-                    </DatePicker.MaximumDate>
-                </DatePicker>
+            <DatePicker Date="{Binding Path=Term.TermEnd}" Margin="5"  Style="{StaticResource form-date}">
+                <DatePicker.Format>dd-MM-yyyy</DatePicker.Format>
+                <DatePicker.MinimumDate>
+                    <system:DateTime x:FactoryMethod="Parse">
+                        <x:Arguments>
+                            <x:String>Jan 1 2017</x:String>
+                        </x:Arguments>
+                    </system:DateTime>
+                </DatePicker.MinimumDate>
+                <DatePicker.MaximumDate>
+                    <system:DateTime x:FactoryMethod="Parse">
+                        <x:Arguments>
+                            <x:String>Dec 31 2050</x:String>
+                        </x:Arguments>
+                    </system:DateTime>
+                </DatePicker.MaximumDate>
+            </DatePicker>
 
             <Label Text="Bond cost" Style="{StaticResource form-label}"></Label>
-                <Entry Keyboard="Numeric"  Style="{StaticResource form-entry}"></Entry>
+            <Entry Keyboard="Numeric" Style="{StaticResource form-entry}" Text="{Binding Term.BondAmount}"></Entry>
+
 
             <Label Text="Casual rate" Style="{StaticResource form-label}"></Label>
-            <Entry Keyboard="Numeric" Style="{StaticResource form-entry}"></Entry>
+            <Entry Keyboard="Numeric" Style="{StaticResource form-entry}" Text="{Binding Term.CasualRate}"></Entry>
 
-                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+
+            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
                 <Label Text="Include organizer" Style="{StaticResource form-label}"></Label>
-                    <Switch HorizontalOptions="EndAndExpand">
-                    </Switch>
-                </StackLayout>
-                
-    <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
-        <Button Text="Save" Command="{Binding OnSave}"></Button>
-        <Button Text="Cancel" Command="{Binding OnCancel}"></Button>
+                <Switch HorizontalOptions="EndAndExpand" IsToggled="{Binding Term.IncludeOrganizer}">
+                </Switch>
+            </StackLayout>
 
-    </StackLayout>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                <Label Text="Invoiced" Style="{StaticResource form-label}"></Label>
+                <Switch HorizontalOptions="EndAndExpand" IsToggled="{Binding Term.IsInvoiced}">
+                </Switch>
+            </StackLayout>
+
+
+            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                <Button Text="Save" Command="{Binding OnSaveTerm}"></Button>
+                <Button Text="Cancel" Command="{Binding OnCancel}"></Button>
 
             </StackLayout>
+
+        </StackLayout>
         <!--</Grid>-->
-  </StackLayout>
-  
+    </StackLayout>
+
 </ContentPage>

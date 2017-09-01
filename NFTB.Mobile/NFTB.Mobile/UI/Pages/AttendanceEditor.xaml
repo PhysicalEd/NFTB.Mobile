@@ -7,60 +7,46 @@
              x:Class="NFTB.Mobile.UI.Pages.AttendanceEditor">
 
     <StackLayout Style="{StaticResource main}">
-        <Grid Style="{StaticResource filter}">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-                <ColumnDefinition Width="10*"></ColumnDefinition>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-
-            <!--<Picker x:Name="PlayerListFilter" ItemsSource="{Binding TestList}" IsVisible="False">
-
-            </Picker>-->
-
-            <Label Text="Filter was there a thing in the majigy yoza hey hey" HorizontalOptions="Center" Grid.Column="1"></Label>
-
-            <Image Source="icon.png" HorizontalOptions="End" Grid.Column="2">
-                <Image.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding OnFilterTapped}">
-
-                    </TapGestureRecognizer>
-                </Image.GestureRecognizers>
-            </Image>
-            
-        </Grid>
-
-        <ListView ItemsSource="{Binding PlayerAttendances}" HasUnevenRows="False" Grid.Row="0">
+        <Label Text="Term players"></Label>
+        <ListView ItemsSource="{Binding TermPlayerAttendances}" HasUnevenRows="False" Grid.Row="0">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <!--<ViewCell.ContextActions>
-                            <MenuItem Command="{Binding Path=BindingContext.OnEditPlayer, Source={x:Reference PlayerListView}}" CommandParameter="{Binding .}" Text="Edit" />
-                            <MenuItem  Command="{Binding Path=BindingContext.OnDeletePlayer, Source={x:Reference PlayerListView}}" CommandParameter="{Binding .}" Text="Delete" />
-
-                        </ViewCell.ContextActions>-->
-                        <StackLayout Style="{StaticResource list-view-item}">
-                            <!--<Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="*"></RowDefinition>
-                                    <RowDefinition Height="*"></RowDefinition>
-
-                                </Grid.RowDefinitions>
-
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="5*"></ColumnDefinition>
-                                    <ColumnDefinition Width="*"></ColumnDefinition>
-                                </Grid.ColumnDefinitions>
-
-                            </Grid>-->
-
-                            <Label Style="{StaticResource h1}" Text="{Binding PlayerName}" Grid.Column="0" Grid.Row="0"></Label>
-                            <Label Text="Hey" Grid.Column="0" Grid.Row="1"></Label>
+                     <!--<StackLayout Style="{StaticResource list-view-item}">-->
+                        <StackLayout HorizontalOptions="FillAndExpand">
+                            
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                <Label Style="{StaticResource h1}" Text="{Binding FullName}" Grid.Column="0" Grid.Row="0"></Label>
+                                <Switch IsToggled="{Binding HasAttended}"  HorizontalOptions="EndAndExpand" > </Switch>
+                            </StackLayout>
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+
+        <Label Text="Casual players"></Label>
+        <ListView ItemsSource="{Binding CasualPlayerAttendances}" HasUnevenRows="False" Grid.Row="0">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <!--<StackLayout Style="{StaticResource list-view-item}">-->
+                        <StackLayout HorizontalOptions="FillAndExpand">
+
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                <Label Style="{StaticResource h1}" Text="{Binding FullName}" Grid.Column="0" Grid.Row="0"></Label>
+                                <Switch IsToggled="{Binding Attended}"  HorizontalOptions="EndAndExpand" ></Switch>
+                            </StackLayout>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+            <Button Text="Save" Command="{Binding OnSaveAttendance}"></Button>
+            <Button Text="Cancel" Command="{Binding OnCancel}"></Button>
+
+        </StackLayout>
 
 
     </StackLayout>

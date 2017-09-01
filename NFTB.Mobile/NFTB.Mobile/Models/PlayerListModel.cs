@@ -4,6 +4,8 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using NFTB.Mobile.API;
 using NFTB.Mobile.API.Results;
+using NFTB.Mobile.Common.Extensions;
+using NFTB.Mobile.Contracts;
 using NFTB.Mobile.Data.Entities;
 using NFTB.Mobile.Logic.DataManagers;
 using NFTB.Mobile.UI.Pages;
@@ -12,17 +14,22 @@ using Xamarin.Forms;
 namespace NFTB.Mobile.Models
 {
 
-    class PlayerListModel : BaseModel
+    public class PlayerListModel : BaseModel
     {
-        public ObservableCollection<PlayerSummary> _PlayerList { get; set; }
-        public ObservableCollection<PlayerSummary> PlayerList { get; set; } = new ObservableCollection<PlayerSummary>();
-
-        public ObservableCollection<string> _TestList { get; set; }
-        public ObservableCollection<string> TestList { get; set; } = new ObservableCollection<string>();
+        public ObservableCollection<PlayerSummary> _PlayerList { get; set; } = new ObservableCollection<PlayerSummary>();
+        public ObservableCollection<PlayerSummary> PlayerList { get { return this._PlayerList; } set
+            {
+                this._PlayerList = value;
+            } }
 
         public ICommand OnGetPlayers
         {
             get { return new Command(async () => await this.GetPlayers()); }
+        }
+
+        public ICommand OnEditPlayer
+        {
+            get { return new Command(async () => await this.EditPlayer()); }
         }
 
         public Picker FilterPicker { get; set; }
@@ -40,13 +47,24 @@ namespace NFTB.Mobile.Models
             }
         }
 
-        public PlayerListModel(ContentPage ui) : base(ui)
+        public PlayerSummary _SelectedPlayer { get; set; }
+        public PlayerSummary SelectedPlayer
         {
-            var test = this.GetPlayers();
-            this.TestList.Add("Test1");
-            this.TestList.Add("Test2");
-            this.TestList.Add("Test3");
-            
+            get { return this._SelectedPlayer ?? new PlayerSummary(); }
+            set
+            {
+                this._SelectedPlayer = value;
+                if (this._SelectedPlayer != null) this.EditPlayer();
+            }
+        }
+
+        public PlayerListModel(IContentPage ui) : base(ui)
+        {
+        }
+
+        protected override async Task OnAppearing()
+        {
+            this.SelectedPlayer = null;
         }
 
         //public async Task<List<PersonResult>> GetPeople()
@@ -60,20 +78,22 @@ namespace NFTB.Mobile.Models
         {
             this.PlayerList.Clear();
             var playerManager = new PlayerManager();
-            var playerList = await playerManager.GetPlayers();
+            // ED TODO
+            var playerList = await playerManager.GetPlayers(null);
             foreach (var player in playerList) this.PlayerList.Add(player);
             this.IsBusy = false;
         }
 
-        //public async Task GetTermPlayers()
-        //{
-        //    this.PlayerList.Clear();
-        //    var playerManager = new PlayerManager();
-        //    var playerList = await playerManager.GetPlayers();
-        //    foreach (var player in playerList) this.PlayerList.Add(player);
-        //    this.IsBusy = false;
-        //}
-
+        public async Task EditPlayer()
+        {
+            var playerEditorPage = new PlayerEditor(this.SelectedPlayer);
+            await this.GoToPage(playerEditorPage);
+            playerEditorPage.Model().PlayerSaved = async (player) =>
+            {
+                await this.ClosePage();
+                this.PlayerList.Add(player);
+            };
+        }
 
         public ICommand OnChange
         {
@@ -93,11 +113,8 @@ namespace NFTB.Mobile.Models
 
         public async Task Pop()
         {
-            //await this.GetPlayers();
-            //var test = 3;
             var newPage = new PlayerList();
-
-            await this.UI.Navigation.PushAsync(newPage);
+            await this.GoToPage(newPage);
         }
 
         public async Task Change()

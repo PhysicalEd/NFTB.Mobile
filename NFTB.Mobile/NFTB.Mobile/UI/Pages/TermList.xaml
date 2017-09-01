@@ -7,40 +7,41 @@
              x:Class="NFTB.Mobile.UI.Pages.TermList"
              Title="Term list">
 
-    <StackLayout Style="{StaticResource main}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
 
-        <Grid Style="{StaticResource filter}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+
+        <StackLayout Style="{StaticResource main}" Grid.Row="0" Grid.Column="0">
+
+            <!--<StackLayout Grid.Row="0" Orientation="Horizontal" BackgroundColor="White" Padding="10">
+        <Grid HorizontalOptions="FillAndExpand">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"></ColumnDefinition>
-                <ColumnDefinition Width="10*"></ColumnDefinition>
+                <ColumnDefinition Width="12*"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-
-            <Picker x:Name="PlayerListFilter" ItemsSource="{Binding TestList}" IsVisible="False">
-
-            </Picker>
-
-            <Label Text="Filter was there a thing in the majigy yoza hey hey" HorizontalOptions="Center" Grid.Column="1"></Label>
-
-            <Image Source="icon.png" HorizontalOptions="End" Grid.Column="2">
-                <Image.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding OnFilterTapped}">
-
-                    </TapGestureRecognizer>
-                </Image.GestureRecognizers>
+            <Image HorizontalOptions="Start" Source="hamburgermenu.png" Grid.Column="0"></Image>
+            <Label Text="THIS IS MY TITLE" HorizontalOptions="FillAndExpand" TextColor="Aqua" Grid.Column="1" HorizontalTextAlignment="Center"></Label>
 
 
-            </Image>
         </Grid>
-        
-        <ListView x:Name="TermListView" ItemsSource="{Binding TermList}" SelectedItem="{Binding SelectedTerm}" ItemSelected="TermListView_OnItemSelected" HasUnevenRows="True" IsPullToRefreshEnabled="True" RefreshCommand="{Binding OnGetTerms}" IsRefreshing="{Binding IsBusy}">
+
+    </StackLayout>-->
+
+            <ListView x:Name="TermListView" ItemsSource="{Binding TermList}" SelectedItem="{Binding SelectedTerm}" ItemSelected="OnItemSelected" HasUnevenRows="True" IsPullToRefreshEnabled="True" RefreshCommand="{Binding OnGetTerms}" IsRefreshing="{Binding IsBusy}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <ViewCell.ContextActions>
+                            <!--<ViewCell.ContextActions>
                                 <MenuItem Command="{Binding Path=BindingContext.OnEditTerm, Source={x:Reference TermListView}}" CommandParameter="{Binding .}" Text="Edit" />
                                 <MenuItem  Command="{Binding Path=BindingContext.OnDeleteTerm, Source={x:Reference TermListView}}" CommandParameter="{Binding .}" Text="Delete" />
-                            </ViewCell.ContextActions>
+                            </ViewCell.ContextActions>-->
                             <StackLayout Style="{StaticResource list-view-item}">
                                 <Grid>
                                     <Grid.RowDefinitions>
@@ -61,6 +62,19 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-    </StackLayout>
-  
+        </StackLayout>
+
+        <!--Bottom right buttons-->
+        <AbsoluteLayout Grid.Row="0" Grid.Column="0">
+            <Image Source="add.png" AbsoluteLayout.LayoutBounds="0.9,0.9" AbsoluteLayout.LayoutFlags="PositionProportional">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding OnEditTerm}" />
+                </Image.GestureRecognizers>
+            </Image>
+        </AbsoluteLayout>
+    </Grid>
+
+
+    
+
 </ContentPage>

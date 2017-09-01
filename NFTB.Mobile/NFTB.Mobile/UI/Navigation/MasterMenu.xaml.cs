@@ -11,6 +11,7 @@ namespace NFTB.Mobile.UI.Navigation
         {
             InitializeComponent();
             this.BindingContext = new MasterMenuModel(this);
+            //this.GetAttendanceEditorModel.Text="GetAttendanceEditorModel";
         }
     }
 }

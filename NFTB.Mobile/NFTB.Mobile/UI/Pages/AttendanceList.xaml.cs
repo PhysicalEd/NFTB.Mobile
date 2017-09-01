@@ -1,11 +1,12 @@
-﻿using NFTB.Mobile.Models;
+﻿using NFTB.Mobile.Contracts;
+using NFTB.Mobile.Models;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace NFTB.Mobile.UI.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class AttendanceList : ContentPage
+    public partial class AttendanceList : IContentPage<AttendanceListModel>
     {
         public AttendanceList()
         {
@@ -15,9 +16,10 @@ namespace NFTB.Mobile.UI.Pages
             this.BindingContext = bindingContext;
         }
 
-        public void OnAppearing()
+
+        public void OnItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            base.OnAppearing();
+            this.AttendanceListView.SelectedItem = null;
         }
     }
 }

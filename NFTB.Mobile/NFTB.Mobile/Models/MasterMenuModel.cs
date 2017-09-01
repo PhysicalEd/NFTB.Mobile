@@ -1,7 +1,10 @@
 ﻿using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using NFTB.Mobile.Data.Entities;
+using NFTB.Mobile.Logic.DataManagers;
 using NFTB.Mobile.UI.Pages;
 using Xamarin.Forms;
 
@@ -10,11 +13,18 @@ namespace NFTB.Mobile.Models
     public class MasterMenuModel
     {
         protected MasterDetailPage MasterPage;
-        private ContentPage TermListPage = new TermList();
-        private ContentPage PlayerListPage = new PlayerList();
-        private ContentPage AttendanceListPage = new AttendanceList();
+        private NavigationPage TermListPage = new NavigationPage(new TermList());
+        private NavigationPage PlayerListPage = new NavigationPage(new PlayerList());
+        private NavigationPage AttendanceListPage = new NavigationPage(new AttendanceList());
 
+        private TermSummary ActiveTerm = new TermSummary();
 
+        private string ActiveTermLabel
+        {
+            get { return "Active term: " + this.ActiveTerm.Name; }
+        }
+
+        private string Test { get; } = "HI";
 
         public ICommand OnTermList
         {
@@ -43,8 +53,15 @@ namespace NFTB.Mobile.Models
         public MasterMenuModel(MasterDetailPage masterPage)
         {
             this.MasterPage = masterPage;
-            //this.TermList();
             this.AttendanceList();
+            this.GetActiveTerm();
+        }
+
+        public async Task GetActiveTerm()
+        {
+            var termMgr = new TermManager();
+            var termList = await termMgr.GetTerms(null);
+            this.ActiveTerm = termList.FirstOrDefault(x => x.IsActive);
         }
 
         public void TermList()

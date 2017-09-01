@@ -6,13 +6,20 @@
              xmlns:components="clr-namespace:NFTB.Mobile.UI.Components;assembly=NFTB.Mobile"
              x:Class="NFTB.Mobile.UI.Pages.AttendanceList"
              Title="Attendance list">
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Name="New" Command="{Binding OnAddAttendance}"></ToolbarItem>
-    </ContentPage.ToolbarItems>
 
-    <StackLayout Style="{StaticResource main}">
-        <!--<StackLayout Orientation="Horizontal" HorizontalOptions="Fill" BackgroundColor="Blue">-->
-        <!--<Grid Style="{StaticResource filter}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+
+        <StackLayout Style="{StaticResource main}" Grid.Column="0" Grid.Row="0">
+            <!--<StackLayout Orientation="Horizontal" HorizontalOptions="Fill" BackgroundColor="Blue">-->
+            <!--<Grid Style="{StaticResource filter}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"></ColumnDefinition>
                     <ColumnDefinition Width="10*"></ColumnDefinition>
@@ -35,12 +42,12 @@
 
             </Image>
             </Grid>-->
-        
 
 
-        <!--</StackLayout>-->
-        
-            <ListView x:Name="AttendanceListView" ItemsSource="{Binding AttendanceList}" HasUnevenRows="True" Grid.Row="0">
+
+            <!--</StackLayout>-->
+
+            <ListView x:Name="AttendanceListView" ItemsSource="{Binding AttendanceList}" HasUnevenRows="True" SelectedItem="{Binding SelectedAttendance}" ItemSelected="OnItemSelected" IsPullToRefreshEnabled="True" RefreshCommand="{Binding OnGetTerms}" IsRefreshing="{Binding IsBusy}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -64,7 +71,19 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-        <Button Text="Test" Command="{Binding OnAddAttendance}"></Button>
-  </StackLayout>
-  
+        </StackLayout>
+
+        <!--Bottom right buttons-->
+        <AbsoluteLayout Grid.Row="0" Grid.Column="0">
+            <Image Source="add.png" AbsoluteLayout.LayoutBounds="0.9,0.9" AbsoluteLayout.LayoutFlags="PositionProportional">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding OnEditAttendance}" />
+                </Image.GestureRecognizers>
+            </Image>
+        </AbsoluteLayout>
+
+
+
+    </Grid>
+
 </ContentPage>

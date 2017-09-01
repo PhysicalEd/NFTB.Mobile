@@ -10,7 +10,11 @@ namespace NFTB.Mobile.Data.Entities
         public bool IsCasual { get; set; }
         public int? AmountPaid { get; set; }
 
+        public bool HasAttended { get; set; } = false;
+
         // Player details
-        public string PlayerName { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string FullName { get; set; }
     }
 }

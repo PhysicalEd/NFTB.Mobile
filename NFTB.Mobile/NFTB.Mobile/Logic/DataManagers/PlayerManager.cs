@@ -14,10 +14,12 @@ namespace NFTB.Mobile.Logic.DataManagers
     public class PlayerManager
     {
 
-        public async Task<List<PlayerSummary>> GetPlayers()
+        public async Task<List<PlayerSummary>> GetPlayers(int? termID)
         {
             BaseAPI<List<PlayerSummary>> api = new BaseAPI<List<PlayerSummary>>();
             api.RelativeUrl = "player/playerlist";
+            if (!termID.HasValue) termID = 1;
+            api.ParameterDictionary.Add("TermID", termID.ToString());
             var result = await api.GetAsync();
             return result;
         }
@@ -28,6 +30,34 @@ namespace NFTB.Mobile.Logic.DataManagers
             api.RelativeUrl = "player/termplayerlist";
             var result = await api.GetAsync();
             return result;
+        }
+
+        public async Task<PlayerSummary> SavePlayer(PlayerSummary player)
+        {
+            BaseAPI<PlayerSummary> api = new BaseAPI<PlayerSummary>();
+            api.RelativeUrl = "player/saveplayer";
+            api.ParameterDictionary.Add("PlayerID", player.PlayerID.ToString());
+            api.ParameterDictionary.Add("FirstName", player.FirstName);
+            api.ParameterDictionary.Add("LastName", player.LastName);
+            api.ParameterDictionary.Add("Email", player.Email);
+            api.ParameterDictionary.Add("Phone", player.Phone);
+            api.ParameterDictionary.Add("IsDeleted", false.ToString());
+            var result = await api.GetAsync();
+            return result;
+        }
+
+        public async Task<PlayerSummary> Test(PlayerSummary player)
+        {
+            BaseAPI<PlayerSummary> api = new BaseAPI<PlayerSummary>();
+            api.RelativeUrl = "player/test";
+            //api.ParameterDictionary.Add("PlayerID", player.PlayerID.ToString());
+            //api.ParameterDictionary.Add("FirstName", player.FirstName);
+            //api.ParameterDictionary.Add("LastName", player.LastName);
+            //api.ParameterDictionary.Add("Email", player.Email);
+            //api.ParameterDictionary.Add("Phone", player.Phone);
+            //api.ParameterDictionary.Add("IsDeleted", false.ToString());
+            var result = await api.PostAsync(player);
+            return player;
         }
     }
 }
