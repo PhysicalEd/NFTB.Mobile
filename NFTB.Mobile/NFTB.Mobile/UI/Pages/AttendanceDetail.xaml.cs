@@ -8,14 +8,13 @@ using Xamarin.Forms.Xaml;
 namespace NFTB.Mobile.UI.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class TermEditor : IContentPage<TermEditorModel>
+    public partial class AttendanceDetail : IContentPage<AttendanceEditorModel>
     {
-        public TermEditor(TermSummary term)
+        public AttendanceDetail(AttendanceSummary attendance)
         {
             InitializeComponent();
-            this.BindingContext = new TermEditorModel(this, term);
+            this.BindingContext = new AttendanceEditorModel(this, attendance);
         }
-
         public void OnItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
         }

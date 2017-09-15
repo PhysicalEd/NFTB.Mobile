@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json.Converters;
+﻿using System;
+using Newtonsoft.Json.Converters;
 using NFTB.Mobile.Contracts;
 using NFTB.Mobile.Models;
 using Xamarin.Forms;
@@ -19,6 +20,12 @@ namespace NFTB.Mobile.UI.Pages
         public void OnItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             this.PlayerListView.SelectedItem = null;
+        }
+
+        public void OnEditContextAction(object sender, EventArgs e)
+        {
+            var mi = ((MenuItem)sender);
+            this.PlayerListView.SelectedItem = mi.CommandParameter;
         }
 
     }

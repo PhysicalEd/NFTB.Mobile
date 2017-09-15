@@ -15,6 +15,6 @@ namespace NFTB.Mobile.Data.Entities
         // Player details
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public string FullName { get; set; }
+        public string DisplayName { get; set; }
     }
 }

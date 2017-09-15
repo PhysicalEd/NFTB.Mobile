@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:xfg="clr-namespace:XFGloss;assembly=XFGloss"
+             xmlns:test="clr-namespace:NFTB.Mobile.UI.Pages;assembly=NFTB.Mobile"
+             xmlns:components="clr-namespace:NFTB.Mobile.UI.Components;assembly=NFTB.Mobile"
+             x:Class="NFTB.Mobile.UI.Pages.PlayerDetail"
+             Title="Player list">
+
+        <StackLayout Style="{StaticResource main}" Grid.Row="0" Grid.Column="0">
+
+
+        </StackLayout>
+
+
+
+
+
+
+</ContentPage>

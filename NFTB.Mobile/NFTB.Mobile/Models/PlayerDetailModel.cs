@@ -14,7 +14,7 @@ using Xamarin.Forms;
 namespace NFTB.Mobile.Models
 {
 
-    public class PlayerListModel : BaseModel
+    public class PlayerDetailModel : BaseModel
     {
         public ObservableCollection<PlayerSummary> _PlayerList { get; set; } = new ObservableCollection<PlayerSummary>();
         public ObservableCollection<PlayerSummary> PlayerList { get { return this._PlayerList; } set
@@ -58,9 +58,8 @@ namespace NFTB.Mobile.Models
             }
         }
 
-        public PlayerListModel(IContentPage ui) : base(ui)
+        public PlayerDetailModel(IContentPage ui) : base(ui)
         {
-            this.GetPlayers();
         }
 
         protected override async Task OnAppearing()

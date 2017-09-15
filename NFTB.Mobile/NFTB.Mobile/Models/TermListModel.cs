@@ -40,13 +40,18 @@ namespace NFTB.Mobile.Models
             set
             {
                 this._SelectedTerm = value;
-                if (this._SelectedTerm != null) this.EditTerm();
+                if (this._SelectedTerm != null) this.SelectTerm();
             }
         }
 
         public ICommand OnEditTerm
         {
             get { return new Command(async () => await this.EditTerm()); }
+        }
+
+        public ICommand OnSelectTerm
+        {
+            get { return new Command(async () => await this.SelectTerm()); }
         }
 
         public ICommand OnDeleteTerm
@@ -75,20 +80,21 @@ namespace NFTB.Mobile.Models
             var termList = await termMgr.GetTerms(null);
             foreach (var term in termList)
             {
-                var termStartStr = String.Format("{0:MMMM d yyyy}", term.TermStart);
-                var termEndStr = term.TermEnd.HasValue ? String.Format("{0:MMMM d yyyy}", term.TermEnd) : "???";
-                term.TermRange = String.Format("{0} - {1}", termStartStr, termEndStr);
                 this.TermList.Add(term);
             }
             this.IsBusy = false;
-            
-          
         }
 
         public async Task EditTerm()
         {
             var termEditorPage = new TermEditor(this.SelectedTerm);
             await this.GoToPage(termEditorPage);
+        }
+
+        public async Task SelectTerm()
+        {
+            var termDetailPage = new TermDetail(this.SelectedTerm);
+            await this.GoToPage(termDetailPage);
         }
 
 

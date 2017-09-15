@@ -51,6 +51,9 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
+                            <ViewCell.ContextActions>
+                                <MenuItem Text="Edit" Clicked="OnEditContextAction" CommandParameter="{Binding .}" />
+                            </ViewCell.ContextActions>
                             <StackLayout Style="{StaticResource list-view-item}">
                                 <Grid>
                                     <Grid.RowDefinitions>

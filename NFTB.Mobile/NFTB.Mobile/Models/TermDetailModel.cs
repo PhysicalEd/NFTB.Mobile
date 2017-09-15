@@ -14,15 +14,21 @@ namespace NFTB.Mobile.Models
 
     class TermDetailModel : BaseModel
     {
-
+        public TermSummary Term { get; set; }
+        public TermDetailModelResult TermDetail { get; set; }
+        
         public TermDetailModel(IContentPage ui, TermSummary term) : base(ui)
         {
-            this.LoadTermDetails(term.TermID);
+            this.Term = term;
+            this.LoadTermDetails();
         }
 
-        public async Task LoadTermDetails(int termID)
+        public async Task LoadTermDetails()
         {
-            
+            var termMgr = new TermManager();
+            var termDetail = await termMgr.GetTermDetail(this.Term.TermID);
+            this.TermDetail = termDetail;
+            //this.IsBusy = false;
         }
 
 

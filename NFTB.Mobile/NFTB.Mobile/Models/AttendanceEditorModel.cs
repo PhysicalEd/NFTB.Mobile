@@ -84,7 +84,7 @@ namespace NFTB.Mobile.Models
             //        var playerAttendance = new PlayerAttendanceSummary()
             //        {
             //            PlayerID = player.PlayerID,
-            //            FullName = player.PlayerName
+            //            DisplayName = player.DisplayName
             //        };
             //        if (player.TermID > 0)
             //        {
@@ -104,7 +104,7 @@ namespace NFTB.Mobile.Models
             //        var playerAttendance = new PlayerAttendanceSummary()
             //        {
             //            PlayerID = player.PlayerID,
-            //            FullName = player.PlayerName
+            //            DisplayName = player.DisplayName
             //        };
             //        if (player.TermID > 0) { this.TermPlayerAttendances.Add(playerAttendance); } else { this.CasualPlayerAttendances.Add(playerAttendance); }
             //    }

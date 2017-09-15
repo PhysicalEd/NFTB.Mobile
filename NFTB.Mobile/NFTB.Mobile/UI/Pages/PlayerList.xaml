@@ -29,17 +29,15 @@
                       SelectedItem="{Binding SelectedPlayer}"
                       HorizontalOptions="FillAndExpand"
                       VerticalOptions="FillAndExpand"
-                      
+                      ItemSelected="OnItemSelected"
             >
 
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <!--<ViewCell.ContextActions>
-                                <MenuItem Command="{Binding Path=BindingContext.OnEditPlayer, Source={x:Reference PlayerListView}}" CommandParameter="{Binding Source={x:Reference PlayerListView}, Path=BindingContext.SelectedPlayer}" Text="Edit" />
-                                <MenuItem  Command="{Binding Path=BindingContext.OnDeletePlayer, Source={x:Reference PlayerListView}}" CommandParameter="{Binding .}" Text="Delete" />
-
-                            </ViewCell.ContextActions>-->
+                            <ViewCell.ContextActions>
+                                <MenuItem Text="Edit" Clicked="OnEditContextAction" CommandParameter="{Binding .}" />
+                            </ViewCell.ContextActions>
                             <StackLayout Style="{StaticResource list-view-item}">
                                 <Grid>
                                     <Grid.RowDefinitions>
@@ -53,7 +51,7 @@
                                         <ColumnDefinition Width="*"></ColumnDefinition>
                                     </Grid.ColumnDefinitions>
 
-                                    <Label Style="{StaticResource h1}" Text="{Binding FirstName}" Grid.Column="0" Grid.Row="0"></Label>
+                                    <Label Style="{StaticResource h1}" Text="{Binding DisplayName}" Grid.Column="0" Grid.Row="0"></Label>
                                     <Label Text="Hey" Grid.Column="0" Grid.Row="1"></Label>
                                 </Grid>
                             </StackLayout>
@@ -64,6 +62,7 @@
             </ListView>
 
         </StackLayout>
+        
         <!--Bottom right buttons-->
         <AbsoluteLayout Grid.Row="0" Grid.Column="0">
             <Image Source="add.png" AbsoluteLayout.LayoutBounds="0.9,0.9" AbsoluteLayout.LayoutFlags="PositionProportional">

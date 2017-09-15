@@ -16,7 +16,7 @@
                         <StackLayout HorizontalOptions="FillAndExpand">
                             
                             <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                                <Label Style="{StaticResource h1}" Text="{Binding FullName}" Grid.Column="0" Grid.Row="0"></Label>
+                                <Label Style="{StaticResource h1}" Text="{Binding DisplayName}" Grid.Column="0" Grid.Row="0"></Label>
                                 <Switch IsToggled="{Binding HasAttended}"  HorizontalOptions="EndAndExpand" > </Switch>
                             </StackLayout>
                         </StackLayout>
@@ -34,7 +34,7 @@
                         <StackLayout HorizontalOptions="FillAndExpand">
 
                             <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                                <Label Style="{StaticResource h1}" Text="{Binding FullName}" Grid.Column="0" Grid.Row="0"></Label>
+                                <Label Style="{StaticResource h1}" Text="{Binding DisplayName}" Grid.Column="0" Grid.Row="0"></Label>
                                 <Switch IsToggled="{Binding Attended}"  HorizontalOptions="EndAndExpand" ></Switch>
                             </StackLayout>
                         </StackLayout>

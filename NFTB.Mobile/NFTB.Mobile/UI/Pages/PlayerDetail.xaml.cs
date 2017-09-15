@@ -1,6 +1,6 @@
 ﻿using System;
+using Newtonsoft.Json.Converters;
 using NFTB.Mobile.Contracts;
-using NFTB.Mobile.Data.Entities;
 using NFTB.Mobile.Models;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -8,19 +8,22 @@ using Xamarin.Forms.Xaml;
 namespace NFTB.Mobile.UI.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class TermEditor : IContentPage<TermEditorModel>
+    public partial class PlayerDetail : IContentPage<PlayerListModel>
     {
-        public TermEditor(TermSummary term)
+        public PlayerDetail()
         {
             InitializeComponent();
-            this.BindingContext = new TermEditorModel(this, term);
+            var bindingContext = new PlayerListModel(this);
+            this.BindingContext = bindingContext;
         }
 
         public void OnItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
         }
+
         public void OnEditContextAction(object sender, EventArgs e)
         {
         }
+
     }
 }

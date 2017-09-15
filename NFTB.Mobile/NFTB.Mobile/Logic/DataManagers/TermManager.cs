@@ -47,5 +47,14 @@ namespace NFTB.Mobile.Logic.DataManagers
             api.ParameterDictionary.Add("IsInvoiced", term.IsInvoiced.ToString());
             await api.GetAsync();
         }
+
+        public async Task<TermDetailModelResult> GetTermDetail(int termID)
+        {
+            BaseAPI<TermDetailModelResult> api = new BaseAPI<TermDetailModelResult>();
+            api.RelativeUrl = "term/termdetails";
+            api.ParameterDictionary.Add("TermID", termID.ToString());
+            var result = await api.GetAsync();
+            return result;
+        }
     }
 }

@@ -16,6 +16,8 @@ namespace NFTB.Mobile.Models
         private NavigationPage TermListPage = new NavigationPage(new TermList());
         private NavigationPage PlayerListPage = new NavigationPage(new PlayerList());
         private NavigationPage AttendanceListPage = new NavigationPage(new AttendanceList());
+        private NavigationPage TermEditorPage = new NavigationPage(new TermEditor(null));
+
 
         private TermSummary ActiveTerm = new TermSummary();
 
@@ -53,7 +55,7 @@ namespace NFTB.Mobile.Models
         public MasterMenuModel(MasterDetailPage masterPage)
         {
             this.MasterPage = masterPage;
-            this.AttendanceList();
+            this.TermList();
             this.GetActiveTerm();
         }
 
@@ -82,6 +84,13 @@ namespace NFTB.Mobile.Models
         {
             this.MasterPage.Detail = AttendanceListPage;
             this.MasterPage.Title = this.AttendanceListPage.Title;
+            this.MasterPage.IsPresented = false;
+        }
+
+        public void TermEditor()
+        {
+            this.MasterPage.Detail = TermEditorPage;
+            this.MasterPage.Title = this.TermEditorPage.Title;
             this.MasterPage.IsPresented = false;
         }
 

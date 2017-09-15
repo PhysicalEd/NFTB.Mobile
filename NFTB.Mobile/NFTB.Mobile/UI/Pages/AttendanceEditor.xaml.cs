@@ -1,4 +1,5 @@
-﻿using NFTB.Mobile.Contracts;
+﻿using System;
+using NFTB.Mobile.Contracts;
 using NFTB.Mobile.Data.Entities;
 using NFTB.Mobile.Models;
 using Xamarin.Forms;
@@ -14,9 +15,10 @@ namespace NFTB.Mobile.UI.Pages
             InitializeComponent();
             this.BindingContext = new AttendanceEditorModel(this, attendance);
         }
-
-
         public void OnItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+        }
+        public void OnEditContextAction(object sender, EventArgs e)
         {
         }
     }

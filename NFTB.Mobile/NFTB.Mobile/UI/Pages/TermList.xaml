@@ -38,10 +38,9 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <!--<ViewCell.ContextActions>
-                                <MenuItem Command="{Binding Path=BindingContext.OnEditTerm, Source={x:Reference TermListView}}" CommandParameter="{Binding .}" Text="Edit" />
-                                <MenuItem  Command="{Binding Path=BindingContext.OnDeleteTerm, Source={x:Reference TermListView}}" CommandParameter="{Binding .}" Text="Delete" />
-                            </ViewCell.ContextActions>-->
+                            <ViewCell.ContextActions>
+                                <MenuItem Text="Edit" Clicked="OnEditContextAction" CommandParameter="{Binding .}" />
+                            </ViewCell.ContextActions>
                             <StackLayout Style="{StaticResource list-view-item}">
                                 <Grid>
                                     <Grid.RowDefinitions>

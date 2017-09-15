@@ -41,6 +41,8 @@
     <Compile Include="App..cs" />
     <Compile Include="Common\Extensions\ContentPageExtensions.cs" />
     <Compile Include="Contracts\IContentPage.cs" />
+    <Compile Include="Data\Entities\TermDetailModelResult.cs" />
+    <Compile Include="Data\Entities\InvoiceSummary.cs" />
     <Compile Include="Data\Entities\TermSummary.cs" />
     <Compile Include="Data\Entities\PlayerAttendanceSummary.cs" />
     <Compile Include="Data\Entities\AttendanceSummary.cs" />
@@ -53,10 +55,12 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\AttendanceDetailModel.cs" />
     <Compile Include="Models\AttendanceListModel.cs" />
     <Compile Include="Models\MasterMenuModel.cs" />
     <Compile Include="Models\AttendanceEditorModel.cs" />
     <Compile Include="Models\PlayerEditorModel.cs" />
+    <Compile Include="Models\PlayerDetailModel.cs" />
     <Compile Include="Models\TermEditorModel.cs" />
     <Compile Include="Models\TermListModel.cs" />
     <Compile Include="Models\TermDetailModel.cs" />
@@ -76,6 +80,9 @@
     <Compile Include="UI\Components\ListViewGrid.xaml.cs">
       <DependentUpon>ListViewGrid.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\Pages\AttendanceDetail.xaml.cs">
+      <DependentUpon>AttendanceDetail.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\Pages\PlayerEditor.xaml.cs">
       <DependentUpon>PlayerEditor.xaml</DependentUpon>
     </Compile>
@@ -84,6 +91,9 @@
     </Compile>
     <Compile Include="UI\Pages\AttendanceList.xaml.cs">
       <DependentUpon>AttendanceList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Pages\PlayerDetail.xaml.cs">
+      <DependentUpon>PlayerDetail.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\Pages\TermEditor.xaml.cs">
       <DependentUpon>TermEditor.xaml</DependentUpon>
@@ -142,7 +152,6 @@
     <None Include="GettingStarted.Xamarin" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <EmbeddedResource Include="UI\Pages\PlayerList.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
@@ -205,6 +214,18 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="UI\Pages\AttendanceList.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UI\Pages\AttendanceDetail.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UI\Pages\PlayerDetail.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

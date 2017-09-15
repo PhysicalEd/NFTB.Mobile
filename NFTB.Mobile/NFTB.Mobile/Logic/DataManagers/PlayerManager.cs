@@ -18,6 +18,7 @@ namespace NFTB.Mobile.Logic.DataManagers
         {
             BaseAPI<List<PlayerSummary>> api = new BaseAPI<List<PlayerSummary>>();
             api.RelativeUrl = "player/playerlist";
+            // EO todo
             if (!termID.HasValue) termID = 1;
             api.ParameterDictionary.Add("TermID", termID.ToString());
             var result = await api.GetAsync();

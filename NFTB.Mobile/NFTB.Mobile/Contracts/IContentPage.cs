@@ -11,6 +11,7 @@ namespace NFTB.Mobile.Contracts
         event EventHandler BindingContextChanged;
         event EventHandler Appearing;
         void OnItemSelected(object sender, SelectedItemChangedEventArgs e);
+        void OnEditContextAction(object sender, EventArgs e);
     }
 
     public interface IContentPage<T> : IContentPage where T : BaseModel

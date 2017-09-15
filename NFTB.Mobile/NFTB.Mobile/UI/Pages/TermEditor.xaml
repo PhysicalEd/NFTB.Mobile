@@ -7,7 +7,7 @@
              Title="Term editor"
              NavigationPage.HasBackButton="{Binding IsModalPage, Converter={StaticResource Negate}}">
 
-    <StackLayout Style="{StaticResource main}">
+    <ScrollView Style="{StaticResource main}">
         <!--<Grid VerticalOptions="FillAndExpand">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"></RowDefinition>
@@ -65,27 +65,26 @@
             <Entry Keyboard="Numeric" Style="{StaticResource form-entry}" Text="{Binding Term.CasualRate}"></Entry>
 
 
-            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+            <StackLayout Style="{StaticResource form-switch}">
                 <Label Text="Include organizer" Style="{StaticResource form-label}"></Label>
                 <Switch HorizontalOptions="EndAndExpand" IsToggled="{Binding Term.IncludeOrganizer}">
                 </Switch>
             </StackLayout>
 
-            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+            <StackLayout Style="{StaticResource form-switch}">
                 <Label Text="Invoiced" Style="{StaticResource form-label}"></Label>
                 <Switch HorizontalOptions="EndAndExpand" IsToggled="{Binding Term.IsInvoiced}">
                 </Switch>
             </StackLayout>
-
-
-            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
-                <Button Text="Save" Command="{Binding OnSaveTerm}"></Button>
-                <Button Text="Cancel" Command="{Binding OnCancel}"></Button>
-
+            
+            <StackLayout Style="{StaticResource form-buttons}">
+                <Button Text="Save" Command="{Binding OnSaveTerm}" Style="{StaticResource btn-primary}" HorizontalOptions="FillAndExpand"/>
+                <Button Text="Cancel" Command="{Binding OnCancel}" HorizontalOptions="FillAndExpand"></Button>
             </StackLayout>
 
         </StackLayout>
         <!--</Grid>-->
-    </StackLayout>
-
+    </ScrollView>
+    
+    
 </ContentPage>
