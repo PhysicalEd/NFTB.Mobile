@@ -88,11 +88,25 @@ namespace NFTB.Mobile.Models
         public async Task EditPlayer()
         {
             var playerEditorPage = new PlayerEditor(this.SelectedPlayer);
+            var selectedPlayerIndex = this.PlayerList.IndexOf(this.SelectedPlayer);
+
             await this.GoToPage(playerEditorPage);
             playerEditorPage.Model().PlayerSaved = async (player) =>
             {
+                if (selectedPlayerIndex < 0)
+                {
+                    this.PlayerList.Add(player);
+                }
+                else
+                {
+                    this.PlayerList.RemoveAt(selectedPlayerIndex);
+                    this.PlayerList.Insert(selectedPlayerIndex, player);
+
+                }
+
                 await this.ClosePage();
-                this.PlayerList.Add(player);
+                //await this.GetPlayers();
+                //this.PlayerList.Add(player);
             };
         }
 

@@ -19,6 +19,7 @@ namespace NFTB.Mobile.Models
         private NavigationPage TermEditorPage = new NavigationPage(new TermEditor(null));
 
 
+
         private TermSummary ActiveTerm = new TermSummary();
 
         private string ActiveTermLabel
@@ -26,7 +27,6 @@ namespace NFTB.Mobile.Models
             get { return "Active term: " + this.ActiveTerm.Name; }
         }
 
-        private string Test { get; } = "HI";
 
         public ICommand OnTermList
         {
@@ -55,14 +55,23 @@ namespace NFTB.Mobile.Models
         public MasterMenuModel(MasterDetailPage masterPage)
         {
             this.MasterPage = masterPage;
-            this.TermList();
+            //this.TermList();
+            this.AttendanceList();
             this.GetActiveTerm();
+        }
+
+        public void Test()
+        {
+            //this.MasterPage.Detail = this.TestPage;
+            //this.MasterPage.Title = this.TermListPage.Title;
+            //this.MasterPage.IsPresented = true;
         }
 
         public async Task GetActiveTerm()
         {
             var termMgr = new TermManager();
             var termList = await termMgr.GetTerms(null);
+            // There will always only be just one active term
             this.ActiveTerm = termList.FirstOrDefault(x => x.IsActive);
         }
 
@@ -79,6 +88,7 @@ namespace NFTB.Mobile.Models
             this.MasterPage.Title = this.PlayerListPage.Title;
             this.MasterPage.IsPresented = false;
         }
+
 
         public void AttendanceList()
         {

@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:xfg="clr-namespace:XFGloss;assembly=XFGloss"
+             xmlns:test="clr-namespace:NFTB.Mobile.UI.Pages;assembly=NFTB.Mobile"
+             xmlns:components="clr-namespace:NFTB.Mobile.UI.Components;assembly=NFTB.Mobile"
+             xmlns:system="clr-namespace:System;assembly=System.Runtime"
+             x:Class="NFTB.Mobile.UI.Pages.InvoiceEditor">
+
+    <StackLayout Style="{StaticResource main}">
+        <Grid VerticalOptions="FillAndExpand">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="10*"></RowDefinition>
+            </Grid.RowDefinitions>
+
+        <StackLayout Grid.Row="1" Padding="20">
+            <Label Text="Term" Style="{StaticResource form-label}"></Label>
+            <Entry HorizontalOptions="FillAndExpand" Text="{Binding Invoice.TermName}"></Entry>
+
+            <Label Text="Term range" Style="{StaticResource form-label}"></Label>
+            <Entry HorizontalOptions="FillAndExpand" Text="{Binding Invoice.TermRange}"></Entry>
+
+            <Label Text="Organizer included" Style="{StaticResource form-label}"></Label>
+            <Entry HorizontalOptions="FillAndExpand" Text="{Binding Invoice.OrganizerIsIncluded}"></Entry>
+
+            <Label Text="Number of sessions" Style="{StaticResource form-label}"></Label>
+            <Entry HorizontalOptions="FillAndExpand" Text="{Binding Invoice.NumberOfSessions}"></Entry>
+
+            <Label Text="Invoice date" Style="{StaticResource form-label}"></Label>
+            <DatePicker Date="{Binding Path=Invoice.InvoiceDate}" Margin="5"  Style="{StaticResource form-date}">
+                <DatePicker.Format>dd-MM-yyyy</DatePicker.Format>
+                <DatePicker.MinimumDate>
+                    <system:DateTime x:FactoryMethod="Parse">
+                        <x:Arguments>
+                            <x:String>Jan 1 2017</x:String>
+                        </x:Arguments>
+                    </system:DateTime>
+                </DatePicker.MinimumDate>
+                <DatePicker.MaximumDate>
+                    <system:DateTime x:FactoryMethod="Parse">
+                        <x:Arguments>
+                            <x:String>Dec 31 2050</x:String>
+                        </x:Arguments>
+                    </system:DateTime>
+                </DatePicker.MaximumDate>
+            </DatePicker>
+
+            <Label Text="Payment date" Style="{StaticResource form-label}"></Label>
+            <DatePicker Date="{Binding Path=Invoice.WhenPaid}" Margin="5"  Style="{StaticResource form-date}">
+                <DatePicker.Format>dd-MM-yyyy</DatePicker.Format>
+                <DatePicker.MinimumDate>
+                    <system:DateTime x:FactoryMethod="Parse">
+                        <x:Arguments>
+                            <x:String>Jan 1 2017</x:String>
+                        </x:Arguments>
+                    </system:DateTime>
+                </DatePicker.MinimumDate>
+                <DatePicker.MaximumDate>
+                    <system:DateTime x:FactoryMethod="Parse">
+                        <x:Arguments>
+                            <x:String>Dec 31 2050</x:String>
+                        </x:Arguments>
+                    </system:DateTime>
+                </DatePicker.MaximumDate>
+            </DatePicker>
+
+
+            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                <Button Text="Save" Command="{Binding OnSaveInvoice}"></Button>
+                <Button Text="Cancel" Command="{Binding OnCancel}"></Button>
+            </StackLayout>
+
+        </StackLayout>
+        </Grid>
+    </StackLayout>
+
+</ContentPage>

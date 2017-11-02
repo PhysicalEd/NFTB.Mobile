@@ -45,8 +45,19 @@ namespace NFTB.Mobile.Logic.DataManagers
             BaseAPI<AttendanceEditorModelResult> api = new BaseAPI<AttendanceEditorModelResult>();
             api.RelativeUrl = "attendance/attendanceeditor";
             api.ParameterDictionary.Add("AttendanceID", attendance.AttendanceID.ToString());
-            var result = await api.GetAsync();
-            return result;
+            // EO TODO Need to get the active term
+            api.ParameterDictionary.Add("TermID", "1");
+            try
+            {
+                var result = await api.GetAsync();
+                return result;
+
+            }
+            catch (Exception ex)
+            {
+                
+            }
+            return null;
         }
 
         public async Task<AttendanceSummary> SaveAttendance(AttendanceSummary attendance)

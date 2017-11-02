@@ -9,9 +9,19 @@
 
     <StackLayout Style="{StaticResource main}">
         <Label Style="{StaticResource h1}" Text="{Binding Term.Name}"></Label>
-        <Label Style="{StaticResource h1}" Text="Expected amount from casuals"></Label>
-        <Label Style="{StaticResource h1}" Text="{Binding TermDetail.ExpectedAmountFromCasuals, Mode=TwoWay}"></Label>
+        <Label Style="{StaticResource h1}" Text="Total number of sessions"></Label>
+        <Label Style="{StaticResource h1}" Text="{Binding Invoice.NumberOfSessions}"></Label>
+        <Label Style="{StaticResource h1}" Text="Actual amount from casuals"></Label>
+        <Label Style="{StaticResource h1}" Text="{Binding TermDetail.ActualAmountFromCasuals}"></Label>
+        <Label Style="{StaticResource h1}" Text="Actual amount from casuals"></Label>
+        <Label Style="{StaticResource h1}" Text="{Binding TermDetail.ActualAmountFromCasuals}"></Label>
+        <Label Style="{StaticResource h1}" Text="Invoice date"></Label>
+        <Label Style="{StaticResource h1}" Text="{Binding TermDetail.Invoice.InvoiceDate}"></Label>
+        <Label Style="{StaticResource h1}" Text="Total amount"></Label>
+        <Label Style="{StaticResource h1}" Text="{Binding TermDetail.Invoice.TotalAmount}"></Label>
 
+
+        <Button Text="Invoice" Command="{Binding OnEditInvoice}"></Button>
 
 
     </StackLayout>

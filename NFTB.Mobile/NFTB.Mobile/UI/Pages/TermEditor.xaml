@@ -16,7 +16,7 @@
 
         <StackLayout Grid.Row="1" Padding="20">
             <Label Text="Term name" Style="{StaticResource form-label}"></Label>
-            <Entry HorizontalOptions="FillAndExpand" Text="{Binding Term.Name}"></Entry>
+            <Entry HorizontalOptions="FillAndExpand" Text="{Binding Term.Name}" Placeholder="Term name" PlaceholderColor="White"></Entry>
 
             <Label Text="From date" Style="{StaticResource form-label}"></Label>
             <DatePicker Date="{Binding Path=Term.TermStart}" Margin="5" Style="{StaticResource form-date}">

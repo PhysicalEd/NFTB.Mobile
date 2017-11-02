@@ -8,6 +8,7 @@ namespace NFTB.Mobile.Data.Entities
     {
         public TermSummary Term { get; set; } = new TermSummary();
         public List<PlayerSummary> TermPlayers { get; set; }
+        public int NumberOfTermPlayers { get; set; }
         public List<AttendanceSummary> Attendances { get; set; }
         public List<PlayerAttendanceSummary> PlayerAttendances { get; set; } = new List<PlayerAttendanceSummary>();
         public List<PlayerAttendanceSummary> CasualPlayerAttendancesForTerm { get; set; } = new List<PlayerAttendanceSummary>();

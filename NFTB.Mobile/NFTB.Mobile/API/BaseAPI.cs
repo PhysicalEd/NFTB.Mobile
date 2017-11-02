@@ -50,7 +50,7 @@ namespace NFTB.Mobile.API
         }
 
 
-        public async Task<T> PostAsync(T t)
+        public async Task<T> PostAsync(Object t)
         {
             var httpClient = new HttpClient();
             var json = JsonConvert.SerializeObject(t);

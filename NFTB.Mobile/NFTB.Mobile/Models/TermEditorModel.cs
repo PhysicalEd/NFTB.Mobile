@@ -21,6 +21,8 @@ namespace NFTB.Mobile.Models
 
         public event Action<bool> OnPageClosed;
 
+        public Action<InvoiceSummary> InvoiceSaved = (invoice) => { };
+
 
         public ICommand OnCancel
         {

@@ -18,11 +18,14 @@ namespace NFTB.Mobile.Models
 
     public class AttendanceEditorModel : BaseModel
     {
-        private AttendanceEditorModelResult ModelResult { get; set; }
+        public Action<AttendanceSummary> AttendanceSaved = (attendance) => { };
+
+        private AttendanceEditorModelResult ModelResult { get; set; } = new AttendanceEditorModelResult();
         public List<PlayerSummary> PlayerList { get; set; } = new List<PlayerSummary>();
         public ObservableCollection<PlayerAttendanceSummary> TermPlayerAttendances { get; set; } = new ObservableCollection<PlayerAttendanceSummary>();
         public ObservableCollection<PlayerAttendanceSummary> CasualPlayerAttendances { get; set; } = new ObservableCollection<PlayerAttendanceSummary>();
 
+        public DatePicker DatePicker { get; set; }
         public List<PlayerAttendanceSummary> PlayerAttendances { get; set; } = new List<PlayerAttendanceSummary>();
         // Need to populate this programmatically
         //public TermSummary SelectedTerm { get; set; } = new TermSummary() {TermID = 1};
@@ -36,6 +39,8 @@ namespace NFTB.Mobile.Models
 
         public AttendanceEditorModel(IContentPage ui, AttendanceSummary attendance) : base(ui)
         {
+            // EO TODO Testing
+            //this.Attendance = new AttendanceSummary();
             this.Attendance = attendance == null ? new AttendanceSummary() : attendance;
             this.LoadAttendances();
         }
@@ -59,8 +64,10 @@ namespace NFTB.Mobile.Models
             //}
 
             var attendanceMgr = new AttendanceManager();
-            this.Attendance = new AttendanceSummary();
+            //this.Attendance = new AttendanceSummary();
             this.ModelResult = await attendanceMgr.GetAttendanceEditorModel(this.Attendance);
+
+            // Bind data...
             this.PlayerList = this.ModelResult.PlayerList;
             foreach (var attendance in this.ModelResult.TermPlayerAttendances) this.TermPlayerAttendances.Add((attendance));
             foreach (var attendance in this.ModelResult.CasualPlayerAttendances) this.CasualPlayerAttendances.Add((attendance));
@@ -120,24 +127,28 @@ namespace NFTB.Mobile.Models
 
         public async Task SaveAttendance()
         {
+
+            // EO TODO This is ugly as...
+
+            // Clear list to avoid double ups...
+            this.Attendance.PlayerAttendances.Clear();
             // Join both casual and permanents that have been marked as attended
             try
             {
-                foreach (var attendance in this.TermPlayerAttendances)
+                foreach (var attendance in this.TermPlayerAttendances) //this.Attendance.PlayerAttendances.Add(attendance);
                     if (attendance.HasAttended) this.Attendance.PlayerAttendances.Add(attendance);
-                foreach (var attendance in this.CasualPlayerAttendances)
+                foreach (var attendance in this.CasualPlayerAttendances) //this.Attendance.PlayerAttendances.Add(attendance);
                     if (attendance.HasAttended) this.Attendance.PlayerAttendances.Add(attendance);
-
             }
             catch (Exception ex)
             {
                 var s = 3;
             }
-            this.Attendance.AttendanceDate = DateTime.Now;
+            //this.Attendance.AttendanceDate = DateTime.Now;
             var attendanceMgr = new AttendanceManager();
             // Close after save...
-            await attendanceMgr.SaveAttendance(this.Attendance);
-
+            var att = await attendanceMgr.SaveAttendance(this.Attendance);
+            this.AttendanceSaved(att);
             //var termMgr = new TermManager();
 
         }

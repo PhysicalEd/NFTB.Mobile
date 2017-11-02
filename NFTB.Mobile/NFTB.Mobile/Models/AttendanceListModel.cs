@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using NFTB.Mobile.API;
 using NFTB.Mobile.API.Results;
+using NFTB.Mobile.Common.Extensions;
 using NFTB.Mobile.Contracts;
 using NFTB.Mobile.Data.Entities;
 using NFTB.Mobile.Logic.DataManagers;
@@ -30,7 +31,7 @@ namespace NFTB.Mobile.Models
             }
         }
 
-        public AttendanceSummary _SelectedAttendance { get; set; }
+        public AttendanceSummary _SelectedAttendance { get; set; } = new AttendanceSummary();
         public AttendanceSummary SelectedAttendance
         {
             get { return this._SelectedAttendance; }
@@ -67,7 +68,15 @@ namespace NFTB.Mobile.Models
         public async Task EditAttendance()
         {
             var attendanceEditor = new AttendanceEditor(this.SelectedAttendance);
+            var selectedAttendanceIndex = this.AttendanceList.IndexOf(this.SelectedAttendance);
+
             await this.GoToPage(attendanceEditor);
+            attendanceEditor.Model().AttendanceSaved = async (attendance) =>
+            {
+                this.AttendanceList.RemoveAt(selectedAttendanceIndex);
+                this.AttendanceList.Insert(selectedAttendanceIndex, attendance);
+                await this.ClosePage();
+            };
         }
 
         public async Task GetAttendances()

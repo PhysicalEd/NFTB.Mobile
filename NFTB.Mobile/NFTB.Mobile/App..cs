@@ -25,21 +25,11 @@ namespace NFTB.Mobile
             //    }
             //};
             Resources = new Styles().Resources;
-            var menu = new MasterMenu();
-            //menu.Title = "WOOF";
-            //var nav = new NavigationPage(menu);
-            
-            
-            
-            
-            
-            //nav.Title = "Meow";
-            //MainPage = new NavigationPage(new MasterMenu());
-            //MainPage = nav;
-            MainPage = new MasterMenu();
 
-            //MainPage = new TermEditor();
-            //MainPage = new Xamarin.Forms.MasterDetailPage();
+            MainPage = new MasterMenu();
+            //MainPage = new P();
+            //MainPage = new AttendanceList();
+
         }
 
         protected override void OnStart()

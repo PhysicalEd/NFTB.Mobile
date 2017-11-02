@@ -4,9 +4,31 @@
              xmlns:xfg="clr-namespace:XFGloss;assembly=XFGloss"
              xmlns:test="clr-namespace:NFTB.Mobile.UI.Pages;assembly=NFTB.Mobile"
              xmlns:components="clr-namespace:NFTB.Mobile.UI.Components;assembly=NFTB.Mobile"
+             xmlns:system="clr-namespace:System;assembly=System.Runtime"
+             
              x:Class="NFTB.Mobile.UI.Pages.AttendanceEditor">
 
     <StackLayout Style="{StaticResource main}">
+        <Label Text ="Attendance date" />
+
+        <DatePicker Date="{Binding Path=Attendance.AttendanceDate}" Margin="5"  Style="{StaticResource form-date}">
+            <DatePicker.Format>dd-MM-yyyy</DatePicker.Format>
+            <DatePicker.MinimumDate>
+                <system:DateTime x:FactoryMethod="Parse">
+                    <x:Arguments>
+                        <x:String>Jan 1 2017</x:String>
+                    </x:Arguments>
+                </system:DateTime>
+            </DatePicker.MinimumDate>
+            <DatePicker.MaximumDate>
+                <system:DateTime x:FactoryMethod="Parse">
+                    <x:Arguments>
+                        <x:String>Dec 31 2050</x:String>
+                    </x:Arguments>
+                </system:DateTime>
+            </DatePicker.MaximumDate>
+        </DatePicker>
+
         <Label Text="Term players"></Label>
         <ListView ItemsSource="{Binding TermPlayerAttendances}" HasUnevenRows="False" Grid.Row="0">
             <ListView.ItemTemplate>
@@ -35,7 +57,7 @@
 
                             <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
                                 <Label Style="{StaticResource h1}" Text="{Binding DisplayName}" Grid.Column="0" Grid.Row="0"></Label>
-                                <Switch IsToggled="{Binding Attended}"  HorizontalOptions="EndAndExpand" ></Switch>
+                                <Switch IsToggled="{Binding HasAttended}"  HorizontalOptions="EndAndExpand" ></Switch>
                             </StackLayout>
                         </StackLayout>
                     </ViewCell>

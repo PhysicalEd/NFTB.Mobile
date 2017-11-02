@@ -47,18 +47,18 @@ namespace NFTB.Mobile.Logic.DataManagers
             return result;
         }
 
-        public async Task<PlayerSummary> Test(PlayerSummary player)
+        public async Task<List<Person>> GetPeople()
         {
-            BaseAPI<PlayerSummary> api = new BaseAPI<PlayerSummary>();
-            api.RelativeUrl = "player/test";
+            BaseAPI<List<Person>> api = new BaseAPI<List<Person>>();
+            api.RelativeUrl = "person/peoplelist";
             //api.ParameterDictionary.Add("PlayerID", player.PlayerID.ToString());
             //api.ParameterDictionary.Add("FirstName", player.FirstName);
             //api.ParameterDictionary.Add("LastName", player.LastName);
             //api.ParameterDictionary.Add("Email", player.Email);
             //api.ParameterDictionary.Add("Phone", player.Phone);
             //api.ParameterDictionary.Add("IsDeleted", false.ToString());
-            var result = await api.PostAsync(player);
-            return player;
+            var result = await api.GetAsync();
+            return result;
         }
     }
 }
