@@ -26,7 +26,7 @@ namespace NFTB.Mobile.Models
         public ObservableCollection<PlayerAttendanceSummary> CasualPlayerAttendances { get; set; } = new ObservableCollection<PlayerAttendanceSummary>();
 
         public DatePicker DatePicker { get; set; }
-        public List<PlayerAttendanceSummary> PlayerAttendances { get; set; } = new List<PlayerAttendanceSummary>();
+        public ObservableCollection<PlayerAttendanceSummary> PlayerAttendances { get; set; } = new ObservableCollection<PlayerAttendanceSummary>();
         // Need to populate this programmatically
         //public TermSummary SelectedTerm { get; set; } = new TermSummary() {TermID = 1};
         public AttendanceSummary Attendance { get; set; }

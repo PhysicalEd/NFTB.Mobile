@@ -30,17 +30,26 @@
         </DatePicker>
 
         <Label Text="Term players"></Label>
-        <ListView ItemsSource="{Binding TermPlayerAttendances}" HasUnevenRows="False" Grid.Row="0">
+        <ListView ItemsSource="{Binding TermPlayerAttendances}" HasUnevenRows="True" Grid.Row="0">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
                      <!--<StackLayout Style="{StaticResource list-view-item}">-->
-                        <StackLayout HorizontalOptions="FillAndExpand">
-                            
+                        <StackLayout HorizontalOptions="FillAndExpand" Orientation="Vertical">
+
                             <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                                <Label Style="{StaticResource h1}" Text="{Binding DisplayName}" Grid.Column="0" Grid.Row="0"></Label>
-                                <Switch IsToggled="{Binding HasAttended}"  HorizontalOptions="EndAndExpand" > </Switch>
-                            </StackLayout>
+                                    <Label Style="{StaticResource h1}" Text="{Binding DisplayName}"></Label>
+                                    <Switch IsToggled="{Binding HasAttended}"  HorizontalOptions="EndAndExpand" ></Switch>
+                                </StackLayout>
+
+                                <StackLayout IsVisible="{Binding HasAttended}">
+                                    <Label Text="This is a piece of string"></Label>
+                                </StackLayout>
+
+
+
+
+
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>
