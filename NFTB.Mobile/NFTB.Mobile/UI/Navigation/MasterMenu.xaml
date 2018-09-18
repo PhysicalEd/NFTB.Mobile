@@ -7,7 +7,7 @@
   <MasterDetailPage.Master>
     <ContentPage Title="Menu">
       <StackLayout Orientation="Vertical" BackgroundColor="{StaticResource main-color}" Padding="10,50,10,50">
-            <Label Style="{StaticResource page-title}" > FOR THE BOYS</Label>  
+            <Label Style="{StaticResource page-title}"> NFTB</Label>  
                 <Button BackgroundColor="{StaticResource main-color-offset}"  Text ="Terms" TextColor="{StaticResource main-color}" Command="{Binding OnTermList}"/>
                 <Button BackgroundColor="{StaticResource main-color-offset}" Text ="Players" TextColor="{StaticResource main-color}" Command="{Binding OnPlayerList}"/>
                 <Button BackgroundColor="{StaticResource main-color-offset}" Text ="Attendance" TextColor="{StaticResource main-color}" Command="{Binding OnAttendanceList}"/>

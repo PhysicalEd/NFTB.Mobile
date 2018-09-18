@@ -5,7 +5,7 @@
              xmlns:test="clr-namespace:NFTB.Mobile.UI.Pages;assembly=NFTB.Mobile"
              xmlns:components="clr-namespace:NFTB.Mobile.UI.Components;assembly=NFTB.Mobile"
              x:Class="NFTB.Mobile.UI.Pages.AttendanceList"
-             Title="Attendance list">
+             Title="Attendances">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -67,7 +67,7 @@
                                     </Grid.ColumnDefinitions>
 
                                     <Label Style="{StaticResource h1}" Text="{Binding AttendanceDate, StringFormat='{0:MMMM d yyyy}'}" Grid.Column="0" Grid.Row="0"></Label>
-                                    <Label Text="Hey" Grid.Column="0" Grid.Row="1"></Label>
+                                    <!--<Label Text="Hey" Grid.Column="0" Grid.Row="1"></Label>-->
                                 </Grid>
                             </StackLayout>
                         </ViewCell>

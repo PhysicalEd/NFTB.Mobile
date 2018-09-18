@@ -5,7 +5,7 @@
              xmlns:test="clr-namespace:NFTB.Mobile.UI.Pages;assembly=NFTB.Mobile"
              xmlns:components="clr-namespace:NFTB.Mobile.UI.Components;assembly=NFTB.Mobile"
              x:Class="NFTB.Mobile.UI.Pages.TermList"
-             Title="Term list">
+             Title="Terms">
 
     <Grid>
         <Grid.RowDefinitions>
